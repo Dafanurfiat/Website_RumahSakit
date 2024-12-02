@@ -1,3 +1,8 @@
+<?php
+include 'function/function.php';
+
+$poliResult = mysqli_query($conn, "SELECT * FROM poli");
+?>
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
@@ -48,7 +53,7 @@
 		</div>
 		<nav class="navbar navbar-expand-lg navigation" id="navbar">
 			<div class="container">
-				  <a class="navbar-brand" href="index.html">
+				  <a class="navbar-brand" href="landingPage.php">
 					  <img src="images/logo.png" alt="" class="img-fluid">
 				  </a>
 	
@@ -59,16 +64,16 @@
 			  <div class="collapse navbar-collapse" id="navbarmain">
 				<ul class="navbar-nav ml-auto">
 				  <li class="nav-item active">
-					<a class="nav-link" href="index.html">Beranda</a>
+					<a class="nav-link" href="landingPage.php">Beranda</a>
 				  </li>
 				   <li class="nav-item"><a class="nav-link" href="about.html">Tentang Kami</a></li>
 	
-					<li class="nav-item"><a class="nav-link" href="department.html">Poli</a></li>
+					<li class="nav-item"><a class="nav-link" href="poli.php">Poli</a></li>
 	
 					  <li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="doctor.html" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dokter <i class="icofont-thin-down"></i></a>
+						<a class="nav-link dropdown-toggle" href="dokter.php" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dokter <i class="icofont-thin-down"></i></a>
 						<ul class="dropdown-menu" aria-labelledby="dropdown03">
-							<li><a class="dropdown-item" href="doctor.html">Dokter</a></li>
+							<li><a class="dropdown-item" href="dokter.php">Dokter</a></li>
 							<li><a class="dropdown-item" href="appoinment.html">Membuat Janji</a></li>
 						</ul>
 					  </li>
@@ -93,7 +98,7 @@
           <h1 class="text-capitalize mb-5 text-lg">Poli</h1>
 
           <!-- <ul class="list-inline breadcumb-nav">
-            <li class="list-inline-item"><a href="index.html" class="text-white">Home</a></li>
+            <li class="list-inline-item"><a href="landingPage.php" class="text-white">Home</a></li>
             <li class="list-inline-item"><span class="text-white">/</span></li>
             <li class="list-inline-item"><a href="#" class="text-white-50">All Department</a></li>
           </ul> -->
@@ -117,75 +122,22 @@
 		</div>
 
 		<div class="row">
-			<div class="col-lg-4 col-md-6 ">
-				<div class="department-block mb-5">
-					<img src="images/service/service-1.jpg" alt="" class="img-fluid w-100">
-					<div class="content">
-						<h4 class="mt-4 mb-2 title-color">Poli Umum</h4>
-						<p class="mb-4">Menangani berbagai keluhan kesehatan umum dan penyakit ringan, memberikan pemeriksaan rutin, serta pengobatan untuk kondisi medis yang tidak memerlukan spesialisasi tertentu.</p>
-						<a href="department-single.html" class="read-more">Learn More  <i class="icofont-simple-right ml-2"></i></a>
+			<?php foreach ($poliResult as $poli) : ?>
+				<div class="col-lg-4 col-md-6">
+					<div class="department-block mb-5">
+						<img src="images/service/service-8.jpg" alt="" class="img-fluid w-100">
+						<div class="content">
+							<h4 class="mt-4 mb-2 title-color"><?= htmlspecialchars($poli["nama_poli"]) ?></h4>
+							<p class="mb-4"><?= htmlspecialchars($poli["deskripsi_poli"]) ?></p>
+							<a href="department-single.html" class="read-more">Learn More <i class="icofont-simple-right ml-2"></i></a>
+						</div>
 					</div>
 				</div>
-			</div>
-
-			<div class="col-lg-4 col-md-6">
-				<div class="department-block mb-5">
-					<img src="images/service/service-2.jpg" alt="" class="img-fluid w-100">
-					<div class="content">
-						<h4 class="mt-4 mb-2  title-color">Poli Anak</h4>
-						<p class="mb-4">Menyediakan perawatan kesehatan untuk anak-anak, dari bayi hingga remaja, meliputi vaksinasi, pemeriksaan tumbuh kembang, dan pengobatan penyakit khas anak.</p>
-						<a href="department-single.html" class="read-more">Learn More <i class="icofont-simple-right ml-2"></i></a>
-					</div>
-				</div>
-			</div>
-			
-			<div class="col-lg-4 col-md-6">
-				<div class="department-block mb-5">
-					<img src="images/service/service-3.jpg" alt="" class="img-fluid w-100">
-					<div class="content">
-						<h4 class="mt-4 mb-2 title-color">Poli Kandungan (Obstetri dan Ginekologi)</h4>
-						<p class="mb-4">Menyediakan layanan untuk perawatan kesehatan wanita, terutama terkait dengan kehamilan, persalinan, serta masalah kesehatan reproduksi wanita lainnya.</p>
-						<a href="department-single.html" class="read-more">Learn More <i class="icofont-simple-right ml-2"></i></a>
-					</div>
-				</div>
-			</div>
-
-
-			<div class="col-lg-4 col-md-6 ">
-				<div class="department-block  mb-5 mb-lg-0">
-					<img src="images/service/service-4.jpg" alt="" class="img-fluid w-100">
-					<div class="content">
-						<h4 class="mt-4 mb-2 title-color">Poli Penyakit Dalam</h4>
-						<p class="mb-4">Fokus pada diagnosis dan pengobatan penyakit yang memengaruhi organ dalam tubuh, seperti jantung, paru, ginjal, dan organ pencernaan.</p>
-						<a href="department-single.html" class="read-more">Learn More <i class="icofont-simple-right ml-2"></i></a>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-lg-4 col-md-6">
-				<div class="department-block mb-5 mb-lg-0">
-					<img src="images/service/service-6.jpg" alt="" class="img-fluid w-100">
-					<div class="content">
-						<h4 class="mt-4 mb-2 title-color">Poli THT (Telinga, Hidung, Tenggorokan)</h4>
-						<p class="mb-4">Menangani masalah kesehatan terkait dengan telinga, hidung, tenggorokan, dan saluran pernapasan atas, termasuk gangguan pendengaran, infeksi saluran pernapasan, dan gangguan lainnya.</p>
-						<a href="department-single.html" class="read-more">Learn More <i class="icofont-simple-right ml-2"></i></a>
-					</div>
-				</div>
-			</div>
-			
-			<div class="col-lg-4 col-md-6">
-				<div class="department-block mb-5 mb-lg-0">
-					<img src="images/service/service-8.jpg" alt="" class="img-fluid w-100">
-					<div class="content">
-						<h4 class="mt-4 mb-2 title-color">Poli Gigi (Odontologi)</h4>
-						<p class="mb-4">Menyediakan layanan perawatan gigi dan mulut, termasuk pemeriksaan, pembersihan gigi, penambalan, pencabutan, serta perawatan saluran akar dan masalah lainnya pada gigi.</p>
-						<a href="department-single.html" class="read-more">Learn More <i class="icofont-simple-right ml-2"></i></a>
-					</div>
-				</div>
-			</div>
+			<?php endforeach; ?>
 		</div>
 	</div>
 </section>
+
 
 <!-- footer Start -->
 <footer class="footer section gray-bg">
@@ -207,11 +159,11 @@
 					<div class="divider mb-4"></div>
 
 					<ul class="list-unstyled footer-menu lh-35">
-						<li><a href="department.html">Penyakit Dalam </a></li>
-						<li><a href="department.html">Kandungan dan anak</a></li>
-						<li><a href="department.html">Umum</a></li>
-						<li><a href="department.html">THT</a></li>
-						<li><a href="department.html">Gigi</a></li>
+						<li><a href="poli.php">Penyakit Dalam </a></li>
+						<li><a href="poli.php">Kandungan dan anak</a></li>
+						<li><a href="poli.php">Umum</a></li>
+						<li><a href="poli.php">THT</a></li>
+						<li><a href="poli.php">Gigi</a></li>
 					</ul>
 				</div>
 			</div>

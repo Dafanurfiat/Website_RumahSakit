@@ -48,7 +48,7 @@
 	</div>
 	<nav class="navbar navbar-expand-lg navigation" id="navbar">
 		<div class="container">
-		 	 <a class="navbar-brand" href="index.html">
+		 	 <a class="navbar-brand" href="landingPage.php">
 			  	<img src="images/logo.png" alt="" class="img-fluid">
 			  </a>
 
@@ -59,23 +59,23 @@
 		  <div class="collapse navbar-collapse" id="navbarmain">
 			<ul class="navbar-nav ml-auto">
 			  <li class="nav-item active">
-				<a class="nav-link" href="index.html">Home</a>
+				<a class="nav-link" href="landingPage.php">Home</a>
 			  </li>
 			   <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
 			    <li class="nav-item"><a class="nav-link" href="service.html">Services</a></li>
 
 			    <li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="department.html" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Department <i class="icofont-thin-down"></i></a>
+					<a class="nav-link dropdown-toggle" href="poli.php" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Department <i class="icofont-thin-down"></i></a>
 					<ul class="dropdown-menu" aria-labelledby="dropdown02">
-						<li><a class="dropdown-item" href="department.html">Departments</a></li>
+						<li><a class="dropdown-item" href="poli.php">Departments</a></li>
 						<li><a class="dropdown-item" href="department-single.html">Department Single</a></li>
 					</ul>
 			  	</li>
 
 			  	<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="doctor.html" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Doctors <i class="icofont-thin-down"></i></a>
+					<a class="nav-link dropdown-toggle" href="dokter.php" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Doctors <i class="icofont-thin-down"></i></a>
 					<ul class="dropdown-menu" aria-labelledby="dropdown03">
-						<li><a class="dropdown-item" href="doctor.html">Doctors</a></li>
+						<li><a class="dropdown-item" href="dokter.php">Doctors</a></li>
 						<li><a class="dropdown-item" href="doctor-single.html">Doctor Single</a></li>
 						<li><a class="dropdown-item" href="appoinment.html">Appoinment</a></li>
 					</ul>
@@ -108,7 +108,7 @@
           <h1 class="text-capitalize mb-5 text-lg">Alexandar james</h1>
 
           <!-- <ul class="list-inline breadcumb-nav">
-            <li class="list-inline-item"><a href="index.html" class="text-white">Home</a></li>
+            <li class="list-inline-item"><a href="landingPage.php" class="text-white">Home</a></li>
             <li class="list-inline-item"><span class="text-white">/</span></li>
             <li class="list-inline-item"><a href="#" class="text-white-50">Doctor Details</a></li>
           </ul> -->

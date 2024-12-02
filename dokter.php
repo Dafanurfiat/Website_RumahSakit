@@ -1,3 +1,9 @@
+<?php 
+include 'function/function.php';
+
+$dokterResult = mysqli_query($conn, "SELECT * FROM dokter");
+$poliResult = mysqli_query($conn, "SELECT * FROM poli");
+?>
 <!DOCTYPE html>
 <html lang="zxx">
   <head>
@@ -52,7 +58,7 @@
 		</div>
 		<nav class="navbar navbar-expand-lg navigation" id="navbar">
 			<div class="container">
-				  <a class="navbar-brand" href="index.html">
+				  <a class="navbar-brand" href="landingPage.php">
 					  <img src="images/logo.png" alt="" class="img-fluid">
 				  </a>
 	
@@ -63,16 +69,16 @@
 			  <div class="collapse navbar-collapse" id="navbarmain">
 				<ul class="navbar-nav ml-auto">
 				  <li class="nav-item active">
-					<a class="nav-link" href="index.html">Beranda</a>
+					<a class="nav-link" href="landingPage.php">Beranda</a>
 				  </li>
 				   <li class="nav-item"><a class="nav-link" href="about.html">Tentang Kami</a></li>
 	
-					<li class="nav-item"><a class="nav-link" href="department.html">Poli</a></li>
+					<li class="nav-item"><a class="nav-link" href="poli.php">Poli</a></li>
 	
 					  <li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="doctor.html" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dokter <i class="icofont-thin-down"></i></a>
+						<a class="nav-link dropdown-toggle" href="dokter.php" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dokter <i class="icofont-thin-down"></i></a>
 						<ul class="dropdown-menu" aria-labelledby="dropdown03">
-							<li><a class="dropdown-item" href="doctor.html">Dokter</a></li>
+							<li><a class="dropdown-item" href="dokter.php">Dokter</a></li>
 							<li><a class="dropdown-item" href="appoinment.html">Membuat Janji</a></li>
 						</ul>
 					  </li>
@@ -97,7 +103,7 @@
           <h1 class="text-capitalize mb-5 text-lg">Spesialis Dokter</h1>
 
           <!-- <ul class="list-inline breadcumb-nav">
-            <li class="list-inline-item"><a href="index.html" class="text-white">Home</a></li>
+            <li class="list-inline-item"><a href="landingPage.php" class="text-white">Home</a></li>
             <li class="list-inline-item"><span class="text-white">/</span></li>
             <li class="list-inline-item"><a href="#" class="text-white-50">All Doctors</a></li>
           </ul> -->
@@ -126,111 +132,30 @@
 	          <label class="btn active ">
 	            <input type="radio" name="shuffle-filter" value="all" checked="checked" />Semua Spesialis
 	          </label>
+			  <?php while ($poli = mysqli_fetch_assoc($poliResult)) : ?>
 	          <label class="btn ">
-	            <input type="radio" name="shuffle-filter" value="cat1" />Kandungan
+	            <input type="radio" name="shuffle-filter" value="cat<?= $poli['id_poli'] ?>" /><?= htmlspecialchars($poli['nama_poli']) ?>
 	          </label>
-	          <label class="btn">
-	            <input type="radio" name="shuffle-filter" value="cat2" />Umum
-	          </label>
-	          <label class="btn">
-	            <input type="radio" name="shuffle-filter" value="cat3" />Anak
-	          </label>
-	          <label class="btn">
-	            <input type="radio" name="shuffle-filter" value="cat4" />Penyakit Dalam
-	          </label>
-	           <label class="btn">
-	            <input type="radio" name="shuffle-filter" value="cat5" />THT
-	          </label>
-	          <label class="btn">
-	            <input type="radio" name="shuffle-filter" value="cat6" />Gigi
-	          </label>
+			  <?php endwhile; ?>
 	        </div>
       </div>
 
     <div class="row shuffle-wrapper portfolio-gallery">
-      	<div class="col-lg-3 col-sm-6 col-md-6 mb-4 shuffle-item" data-groups="[&quot;cat1&quot;]">
-	      	<div class="position-relative doctor-inner-box">
-		        <div class="doctor-profile">
-	               <div class="doctor-img">
-	               		<img src="images/team/1.jpg" alt="doctor-image" class="img-fluid w-100">
-	               </div>
-	            </div>
-                <div class="content mt-3">
-                	<h4 class="mb-0"><a href="doctor-single.html">Dr. Andi Kusuma, Sp.OG</a></h4>
-                	<p>Kandungan</p>
-                </div> 
-	      	</div>
-      	</div>
-
-      <div class="col-lg-3 col-sm-6 col-md-6 mb-4 shuffle-item" data-groups="[&quot;cat2&quot;]">
+	<?php while ($dokter = mysqli_fetch_assoc($dokterResult)) : ?>
+		<div class="col-lg-3 col-sm-6 col-md-6 mb-4 shuffle-item" data-groups='["cat<?= $dokter['id_poli'] ?>"]' ?>
         	<div class="position-relative doctor-inner-box">
 		        <div class="doctor-profile">
 		        	<div class="doctor-img">
-		               <img src="images/team/2.jpg" alt="doctor-image" class="img-fluid w-100">
+		               <img src="images/dokter/<?= htmlspecialchars($dokter['image']) ?>" alt="<?= htmlspecialchars($dokter['nama_dokter']) ?>" class="img-fluid w-100">
 		            </div>
 	            </div>
                 <div class="content mt-3">
-                	<h4 class="mb-0"><a href="doctor-single.html">Dr. Vina Amelia, Sp. Neu</a></h4>
-                	<p>Umum</p>
+                	<h4 class="mb-0"><a href="doctor-single.html"><?= htmlspecialchars($dokter['nama_dokter']) ?></a></h4>
+                	<p> <?php $poli = mysqli_fetch_assoc(mysqli_query($conn, "SELECT nama_poli FROM poli WHERE id_poli = {$dokter['id_poli']}")); echo htmlspecialchars($poli['nama_poli']);?></p>
                 </div> 
 	      	</div>
       </div>
-
-      <div class="col-lg-3 col-sm-6 col-md-6 mb-4 shuffle-item" data-groups="[&quot;cat3&quot;]">
-        	<div class="position-relative doctor-inner-box">
-		        <div class="doctor-profile">
-		        	<div class="doctor-img">
-		               <img src="images/team/3.jpg" alt="doctor-image" class="img-fluid w-100">
-		            </div>
-	            </div>
-                <div class="content mt-3">
-                	<h4 class="mb-0"><a href="doctor-single.html">Dr. Siti Aisyah, Sp.A</a></h4>
-                	<p>Anak</p>
-                </div> 
-	      	</div>
-      </div>
-
-      <div class="col-lg-3 col-sm-6 col-md-6 mb-4 shuffle-item" data-groups="[&quot;cat4&quot;]">
-        	<div class="position-relative doctor-inner-box">
-		        <div class="doctor-profile">
-		        	<div class="doctor-img">
-		               <img src="images/team/4.jpg" alt="doctor-image" class="img-fluid w-100">
-		            </div>
-	            </div>
-                <div class="content mt-3">
-                	<h4 class="mb-0"><a href="doctor-single.html">Dr. Iwan Setiawan, Sp.PD</a></h4>
-                	<p>Penyakit Dalam</p>
-                </div> 
-	      	</div>
-      </div>
-
-      	<div class="col-lg-3 col-sm-6 col-md-6 mb-4 shuffle-item" data-groups="[&quot;cat5&quot;]">
-        	<div class="position-relative doctor-inner-box">
-		        <div class="doctor-profile">
-		        	<div class="doctor-img">
-		               <img src="images/team/1.jpg" alt="doctor-image" class="img-fluid w-100">
-		            </div>
-	            </div>
-                <div class="content mt-3">
-                	<h4 class="mb-0"><a href="doctor-single.html">Dr. Lita Pramesti, Sp.THT</a></h4>
-                	<p>THT</p>
-                </div> 
-	      	</div>
-      	</div>
-
-      <div class="col-lg-3 col-sm-6 col-md-6 mb-4 shuffle-item" data-groups="[&quot;cat6&quot;]">
-       		 <div class="position-relative doctor-inner-box">
-		        <div class="doctor-profile">
-		        	<div class="doctor-img">
-		               <img src="images/team/3.jpg" alt="doctor-image" class="img-fluid w-100">
-		            </div>
-	            </div>
-                <div class="content mt-3">
-                	<h4 class="mb-0"><a href="doctor-single.html">Dr. Erna Sari, Sp.D</a></h4>
-                	<p>Gigi</p>
-                </div> 
-	      	</div>
-      </div>
+	  <?php endwhile; ?>
     </div>
   </div>
 </section>
@@ -255,11 +180,11 @@
 					<div class="divider mb-4"></div>
 
 					<ul class="list-unstyled footer-menu lh-35">
-						<li><a href="department.html">Penyakit Dalam </a></li>
-						<li><a href="department.html">Kandungan dan anak</a></li>
-						<li><a href="department.html">Umum</a></li>
-						<li><a href="department.html">THT</a></li>
-						<li><a href="department.html">Gigi</a></li>
+						<li><a href="poli.php">Penyakit Dalam </a></li>
+						<li><a href="poli.php">Kandungan dan anak</a></li>
+						<li><a href="poli.php">Umum</a></li>
+						<li><a href="poli.php">THT</a></li>
+						<li><a href="poli.php">Gigi</a></li>
 					</ul>
 				</div>
 			</div>

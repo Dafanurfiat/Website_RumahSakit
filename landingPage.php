@@ -174,7 +174,7 @@ if (!isset($_SESSION['id_pasien'])) {
 					<h2 class="title-color">Perawatan Pribadi <br>& Hidup Sehat</h2>
 					<p class="mt-4 mb-5">Kami menyediakan layanan medis terbaik dan terpercaya. Komitmen kami adalah memberikan pelayanan berkualitas yang mengutamakan kenyamanan dan kesehatan Anda.</p>
 
-					<a href="service.html" class="btn btn-main-2 btn-round-full btn-icon">Poli<i class="icofont-simple-right ml-3"></i></a>
+					<a href="poli.php" class="btn btn-main-2 btn-round-full btn-icon">Poli<i class="icofont-simple-right ml-3"></i></a>
 				</div>
 			</div>
 		</div>

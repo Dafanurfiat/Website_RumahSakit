@@ -1,6 +1,11 @@
 <?php
 include 'function/function.php';
 
+if (!isset($_SESSION['id_pasien'])) {
+    header('Location: index.php');
+    exit; // Jangan lanjutkan eksekusi setelah redirect
+}
+
 $poliResult = mysqli_query($conn, "SELECT * FROM poli");
 ?>
 <!DOCTYPE html>
@@ -66,7 +71,7 @@ $poliResult = mysqli_query($conn, "SELECT * FROM poli");
 				  <li class="nav-item active">
 					<a class="nav-link" href="landingPage.php">Beranda</a>
 				  </li>
-				   <li class="nav-item"><a class="nav-link" href="about.html">Tentang Kami</a></li>
+				   <li class="nav-item"><a class="nav-link" href="tentang.php">Tentang Kami</a></li>
 	
 					<li class="nav-item"><a class="nav-link" href="poli.php">Poli</a></li>
 	
@@ -74,7 +79,7 @@ $poliResult = mysqli_query($conn, "SELECT * FROM poli");
 						<a class="nav-link dropdown-toggle" href="dokter.php" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dokter <i class="icofont-thin-down"></i></a>
 						<ul class="dropdown-menu" aria-labelledby="dropdown03">
 							<li><a class="dropdown-item" href="dokter.php">Dokter</a></li>
-							<li><a class="dropdown-item" href="appoinment.html">Membuat Janji</a></li>
+							<li><a class="dropdown-item" href="janji.php">Membuat Janji</a></li>
 						</ul>
 					  </li>
 	
@@ -125,11 +130,11 @@ $poliResult = mysqli_query($conn, "SELECT * FROM poli");
 			<?php foreach ($poliResult as $poli) : ?>
 				<div class="col-lg-4 col-md-6">
 					<div class="department-block mb-5">
-						<img src="images/service/service-8.jpg" alt="" class="img-fluid w-100">
+						<img src="images/service/<?= htmlspecialchars($poli["image"]) ?>" alt="" class="img-fluid w-100">
 						<div class="content">
 							<h4 class="mt-4 mb-2 title-color"><?= htmlspecialchars($poli["nama_poli"]) ?></h4>
 							<p class="mb-4"><?= htmlspecialchars($poli["deskripsi_poli"]) ?></p>
-							<a href="department-single.html" class="read-more">Learn More <i class="icofont-simple-right ml-2"></i></a>
+							<a href="poliSingle.php?id_poli=<?=$poli['id_poli'] ?>" class="read-more">Learn More <i class="icofont-simple-right ml-2"></i></a>
 						</div>
 					</div>
 				</div>

@@ -4,15 +4,15 @@ include 'function/function.php'; // Pastikan ini adalah file koneksi database An
 $messages = "";
 
 // Jika sudah login, redirect ke halaman yang sesuai
-// if (isset($_SESSION['login'])) {
-//     if ($_SESSION['is_admin']) {
-//         header("Location: admin/dashboard.php");
-//         exit();
-//     } else {
-//         header("Location: user/dashboard.php");
-//         exit();
-//     }
-// }
+if (isset($_SESSION['login'])) {
+    if ($_SESSION['is_admin']) {
+        header("Location: admin/dashboard.php");
+        exit();
+    } else {
+        header("Location: landingPage.php");
+        exit();
+    }
+}
 
 // Login
 if (isset($_POST['login'])) {
@@ -63,9 +63,10 @@ if (isset($_POST['login'])) {
                     // Login sebagai pasien
                     $_SESSION['login'] = true;
                     $_SESSION['username'] = $pasien['username'];
+                    $_SESSION['id_pasien'] = $pasien['id_pasien'];
                     $_SESSION['is_admin'] = false; // Menandai sebagai pasien
                     $_SESSION['no_ktp'] = $pasien['no_ktp'];
-                    header("Location: user/dashboard.php");
+                    header("Location: landingPage.php");
                     exit();
                 } else {
                     array_push($errors, "Password salah!");

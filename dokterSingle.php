@@ -1,3 +1,28 @@
+<?php 
+include "function/function.php";
+
+$id_dokter = isset($_GET['id_dokter']) ? intval($_GET['id_dokter']) : 0;
+
+// Query untuk mengambil data dokter dan jadwal
+$sql = "SELECT d.nama_dokter, d.no_wa, d.image, p.nama_poli, d.deskripsi, j.hari, j.jam 
+        FROM dokter d 
+        JOIN poli p ON d.id_poli = p.id_poli 
+        JOIN jadwal_dokter j ON d.id_dokter = j.id_dokter 
+        WHERE d.id_dokter = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $id_dokter);
+$stmt->execute();
+$result = $stmt->get_result();
+
+if ($result->num_rows > 0) {
+    // Pisahkan data dokter dan jadwal
+    $dokter = $result->fetch_assoc(); // Ambil data dokter (baris pertama)
+    $result->data_seek(0); // Reset pointer hasil query
+    $jadwal_list = $result->fetch_all(MYSQLI_ASSOC); // Ambil semua jadwal
+} else {
+    die("Dokter tidak ditemukan.");
+}
+?>
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
@@ -61,14 +86,14 @@
 			  <li class="nav-item active">
 				<a class="nav-link" href="landingPage.php">Home</a>
 			  </li>
-			   <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+			   <li class="nav-item"><a class="nav-link" href="tentang.php">About</a></li>
 			    <li class="nav-item"><a class="nav-link" href="service.html">Services</a></li>
 
 			    <li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="poli.php" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Department <i class="icofont-thin-down"></i></a>
 					<ul class="dropdown-menu" aria-labelledby="dropdown02">
 						<li><a class="dropdown-item" href="poli.php">Departments</a></li>
-						<li><a class="dropdown-item" href="department-single.html">Department Single</a></li>
+						<li><a class="dropdown-item" href="poliSingle.php.html">Department Single</a></li>
 					</ul>
 			  	</li>
 
@@ -76,8 +101,8 @@
 					<a class="nav-link dropdown-toggle" href="dokter.php" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Doctors <i class="icofont-thin-down"></i></a>
 					<ul class="dropdown-menu" aria-labelledby="dropdown03">
 						<li><a class="dropdown-item" href="dokter.php">Doctors</a></li>
-						<li><a class="dropdown-item" href="doctor-single.html">Doctor Single</a></li>
-						<li><a class="dropdown-item" href="appoinment.html">Appoinment</a></li>
+						<li><a class="dropdown-item" href="dokterSingle.php.html">Doctor Single</a></li>
+						<li><a class="dropdown-item" href="janji.php">Appoinment</a></li>
 					</ul>
 			  	</li>
 
@@ -104,8 +129,8 @@
     <div class="row">
       <div class="col-md-12">
         <div class="block text-center">
-          <span class="text-white">Doctor Details</span>
-          <h1 class="text-capitalize mb-5 text-lg">Alexandar james</h1>
+          <span class="text-white">Detail Dokter</span>
+          <h1 class="text-capitalize mb-5 text-lg"><?= htmlspecialchars($dokter['nama_dokter']) ?></h1>
 
           <!-- <ul class="list-inline breadcumb-nav">
             <li class="list-inline-item"><a href="landingPage.php" class="text-white">Home</a></li>
@@ -119,24 +144,16 @@
 </section>
 
 
-<section class="section doctor-single">
+<section id="first" class="section dokterSingle.php">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-4 col-md-6">
 				<div class="doctor-img-block">
-					<img src="images/team/1.jpg" alt="" class="img-fluid w-100">
+					<img src="images/dokter/<?= htmlspecialchars($dokter['image']) ?>" alt="" class="img-fluid w-100">
 
 					<div class="info-block mt-4">
-						<h4 class="mb-0">Alexandar james</h4>
-						<p>Orthopedic Surgary</p>
-
-						<ul class="list-inline mt-4 doctor-social-links">
-							<li class="list-inline-item"><a href="#"><i class="icofont-facebook"></i></a></li>
-							<li class="list-inline-item"><a href="#"><i class="icofont-twitter"></i></a></li>
-							<li class="list-inline-item"><a href="#"><i class="icofont-skype"></i></a></li>
-							<li class="list-inline-item"><a href="#"><i class="icofont-linkedin"></i></a></li>
-							<li class="list-inline-item"><a href="#"><i class="icofont-pinterest"></i></a></li>
-						</ul>
+						<h4 class="mb-0"><?= htmlspecialchars($dokter['nama_dokter']) ?></h4>
+						<p><?= htmlspecialchars($dokter['nama_poli']) ?></p>
 					</div>
 				</div>
 			</div>
@@ -145,108 +162,43 @@
 				<div class="doctor-details mt-4 mt-lg-0">
 					<h2 class="text-md">Introducing to myself</h2>
 					<div class="divider my-4"></div>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam tempore cumque voluptate beatae quis inventore sapiente nemo, a eligendi nostrum expedita veritatis neque incidunt ipsa doloribus provident ex, at ullam. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam, perferendis officiis esse quae, nobis eius explicabo quidem? Officia accusamus repudiandae ea esse non reiciendis accusantium voluptates, facilis enim, corrupti eligendi?</p>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo recusandae veritatis minus optio quod obcaecati laborum temporibus, deleniti vero perferendis molestias, ducimus facilis, sunt minima. Tempora, amet quasi asperiores voluptas?</p>
+					<p><?= htmlspecialchars($dokter['deskripsi']) ?></p>
 
-					<a href="appoinment.html" class="btn btn-main-2 btn-round-full mt-3">Make an Appoinment<i class="icofont-simple-right ml-2  "></i></a>
+					<a href="janji.php" class="btn btn-main-2 btn-round-full mt-3">Make an Appoinment<i class="icofont-simple-right ml-2  "></i></a>
 				</div>
 			</div>
 		</div>
 	</div>
 </section>
 
-<section class="section doctor-qualification gray-bg">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-6">
-				<div class="section-title">
-					<h3>My Educational Qualifications</h3>
-					<div class="divider my-4"></div>
-				</div>
-			</div>
-		</div>
-
-		<div class="row">
-			<div class="col-lg-6">
-				<div class="edu-block mb-5">
-					<span class="h6 text-muted">Year(2005-2007) </span>
-					<h4 class="mb-3 title-color">MBBS, M.D at University of Wyoming</h4>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi doloremque harum, mollitia, soluta maxime porro veritatis fuga autem impedit corrupti aperiam sint, architecto, error nesciunt temporibus! Vel quod, dolor aliquam!</p>
-				</div>
-
-				<div class="edu-block">
-					<span class="h6 text-muted">Year(2007-2009) </span>
-					<h4 class="mb-3 title-color">M.D. of Netherland Medical College</h4>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi doloremque harum, mollitia, soluta maxime porro veritatis fuga autem impedit corrupti aperiam sint, architecto, error nesciunt temporibus! Vel quod, dolor aliquam!</p>
-				</div>
-			</div>
-
-			<div class="col-lg-6">
-				<div class="edu-block mb-5">
-					<span class="h6 text-muted">Year(2009-2010) </span>
-					<h4 class="mb-3 title-color">MBBS, M.D at University of Japan</h4>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi doloremque harum, mollitia, soluta maxime porro veritatis fuga autem impedit corrupti aperiam sint, architecto, error nesciunt temporibus! Vel quod, dolor aliquam!</p>
-				</div>
-
-				<div class="edu-block">
-					<span class="h6 text-muted">Year(2010-2011) </span>
-					<h4 class="mb-3 title-color">M.D. of Canada Medical College</h4>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi doloremque harum, mollitia, soluta maxime porro veritatis fuga autem impedit corrupti aperiam sint, architecto, error nesciunt temporibus! Vel quod, dolor aliquam!</p>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
 
 
 <section class="section doctor-skills">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-4">
-				<h3>My skills</h3>
-				<div class="divider my-4"></div>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. In architecto voluptatem alias, aspernatur voluptatibus corporis quisquam? Consequuntur, ad, doloribus, doloremque voluptatem at consectetur natus eum ipsam dolorum iste laudantium tenetur.</p>
-			</div>
-			<div class="col-lg-4">
-				<div class="skill-list">
-					<h5 class="mb-4">Expertise area</h5>
-					<ul class="list-unstyled department-service">
-						<li><i class="icofont-check mr-2"></i>International Drug Database</li>
-						<li><i class="icofont-check mr-2"></i>Stretchers and Stretcher Accessories</li>
-						<li><i class="icofont-check mr-2"></i>Cushions and Mattresses</li>
-						<li><i class="icofont-check mr-2"></i>Cholesterol and lipid tests</li>
-						<li><i class="icofont-check mr-2"></i>Critical Care Medicine Specialists</li>
-						<li><i class="icofont-check mr-2"></i>Emergency Assistance</li>
-					</ul>
-				</div>
-			</div>
-			<div class="col-lg-4">
-				<div class="sidebar-widget  gray-bg p-4">
-					<h5 class="mb-4">Make Appoinment</h5>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="sidebar-widget bg-light p-4 rounded shadow-sm">
+                    <h5 class="mb-4 text-center font-weight-bold">Make Appointment</h5>
 
 					<ul class="list-unstyled lh-35">
-					  <li class="d-flex justify-content-between align-items-center">
-					    <a href="#">Monday - Friday</a>
-					    <span>9:00 - 17:00</span>
-					  </li>
-					  <li class="d-flex justify-content-between align-items-center">
-					    <a href="#">Saturday</a>
-					    <span>9:00 - 16:00</span>
-					  </li>
-					  <li class="d-flex justify-content-between align-items-center">
-					    <a href="#">Sunday</a>
-					    <span>Closed</span>
-					  </li>
+						<?php foreach ($jadwal_list as $jadwal): ?>
+							<li class="d-flex justify-content-between align-items-center py-3 border-bottom">
+								<span class="font-weight-bold"><?= htmlspecialchars($jadwal['hari']) ?></span>
+								<span class="text-muted"><?= htmlspecialchars($jadwal['jam']) ?></span>
+								<?php endforeach; ?>
+							</li>
 					</ul>
+							
 
-					<div class="sidebar-contatct-info mt-4">
-						<p class="mb-0">Need Urgent Help?</p>
-						<h3 class="text-color-2">+23-4565-65768</h3>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+                    <div class="sidebar-contact-info mt-4 text-center">
+                        <p class="mb-0">Need Urgent Help?</p>
+                        <h3 class="text-primary font-weight-bold"><?= htmlspecialchars($dokter['no_wa']) ?></h3>
+                        <a href="tel:<?= htmlspecialchars($dokter['no_wa']) ?>" class="btn btn-primary btn-sm mt-3">Call Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 
 

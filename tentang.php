@@ -61,7 +61,7 @@
 				  <li class="nav-item active">
 					<a class="nav-link" href="landingPage.php">Beranda</a>
 				  </li>
-				   <li class="nav-item"><a class="nav-link" href="about.html">Tentang Kami</a></li>
+				   <li class="nav-item"><a class="nav-link" href="tentang.php">Tentang Kami</a></li>
 	
 					<li class="nav-item"><a class="nav-link" href="poli.php">Poli</a></li>
 	
@@ -69,7 +69,7 @@
 						<a class="nav-link dropdown-toggle" href="dokter.php" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dokter <i class="icofont-thin-down"></i></a>
 						<ul class="dropdown-menu" aria-labelledby="dropdown03">
 							<li><a class="dropdown-item" href="dokter.php">Dokter</a></li>
-							<li><a class="dropdown-item" href="appoinment.html">Membuat Janji</a></li>
+							<li><a class="dropdown-item" href="janji.php">Membuat Janji</a></li>
 						</ul>
 					  </li>
 	
@@ -169,7 +169,7 @@
 					<img src="images/team/1.jpg" alt="" class="img-fluid w-100">
 
 					<div class="content">
-						<h4 class="mt-4 mb-0"><a href="doctor-single.html">Dr. Andi Kusuma, Sp.OG</a></h4>
+						<h4 class="mt-4 mb-0"><a href="dokterSingle.php.html">Dr. Andi Kusuma, Sp.OG</a></h4>
 						<p>Spesialis Kebidanan dan Kandungan</p>
 					</div>
 				</div>
@@ -180,7 +180,7 @@
 					<img src="images/team/2.jpg" alt="" class="img-fluid w-100">
 
 					<div class="content">
-						<h4 class="mt-4 mb-0"><a href="doctor-single.html">Dr. Iwan Setiawan, Sp.PD</a></h4>
+						<h4 class="mt-4 mb-0"><a href="dokterSingle.php.html">Dr. Iwan Setiawan, Sp.PD</a></h4>
 						<p>Spesialis Penyakit Dalam</p>
 					</div>
 				</div>
@@ -191,7 +191,7 @@
 					<img src="images/team/3.jpg" alt="" class="img-fluid w-100">
 
 					<div class="content">
-						<h4 class="mt-4 mb-0"><a href="doctor-single.html">Dr. Lita Pramesti, Sp.THT</a></h4>
+						<h4 class="mt-4 mb-0"><a href="dokterSingle.php.html">Dr. Lita Pramesti, Sp.THT</a></h4>
 						<p>Spesialis Telinga, Hidung, dan Tenggorokan</p>
 					</div>
 				</div>

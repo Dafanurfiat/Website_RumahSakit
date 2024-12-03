@@ -1,3 +1,12 @@
+<?php 
+session_start();
+
+if (!isset($_SESSION['id_pasien'])) {
+    header('Location: index.php');
+    exit; // Jangan lanjutkan eksekusi setelah redirect
+}
+?>
+
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
@@ -61,7 +70,7 @@
 				  <li class="nav-item active">
 					<a class="nav-link" href="landingPage.php">Beranda</a>
 				  </li>
-				   <li class="nav-item"><a class="nav-link" href="about.html">Tentang Kami</a></li>
+				   <li class="nav-item"><a class="nav-link" href="tentang.php">Tentang Kami</a></li>
 	
 					<li class="nav-item"><a class="nav-link" href="poli.php">Poli</a></li>
 	
@@ -69,7 +78,7 @@
 						<a class="nav-link dropdown-toggle" href="dokter.php" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dokter <i class="icofont-thin-down"></i></a>
 						<ul class="dropdown-menu" aria-labelledby="dropdown03">
 							<li><a class="dropdown-item" href="dokter.php">Dokter</a></li>
-							<li><a class="dropdown-item" href="appoinment.html">Membuat Janji</a></li>
+							<li><a class="dropdown-item" href="janji.php">Membuat Janji</a></li>
 						</ul>
 					  </li>
 	
@@ -96,7 +105,7 @@
 					
 					<p class="mb-4 pr-5">Solusi kesehatan terpercaya di jantung Tana Luwu, memadukan keahlian modern dengan pelayanan penuh kepedulian.</p>
 					<div class="btn-container ">
-						<a href="appoinment.html" target="_blank" class="btn btn-main-2 btn-icon btn-round-full">Membuat Janji<i class="icofont-simple-right ml-2  "></i></a>
+						<a href="janji.php" target="_blank" class="btn btn-main-2 btn-icon btn-round-full">Membuat Janji<i class="icofont-simple-right ml-2  "></i></a>
 					</div>
 				</div>
 			</div>
@@ -115,7 +124,7 @@
 						<span>Layanan 24 Jam</span>
 						<h4 class="mb-3">Penjadwalan Secara Online</h4>
 						<p class="mb-4">Dapatkan dukungan SETIAP saat untuk keadaan darurat. Kami telah memperkenalkan prinsip kedokteran keluarga.</p>
-						<a href="appoinment.html" class="btn btn-main btn-round-full">Membuat Janji</a>
+						<a href="janji.php" class="btn btn-main btn-round-full">Membuat Janji</a>
 					</div>
 				
 					<div class="feature-item mb-5 mb-lg-0">

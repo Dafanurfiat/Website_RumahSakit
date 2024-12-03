@@ -1,3 +1,38 @@
+<?php 
+include "function/function.php";
+
+if (!isset($_SESSION['id_pasien'])) {
+  header('Location: index.php');
+  exit; // Jangan lanjutkan eksekusi setelah redirect
+}
+
+$idPoli = isset($_GET['id_poli']) ? $_GET['id_poli'] : null;
+
+if ($idPoli) {
+    // Persiapkan query untuk mengambil data poli berdasarkan id_poli
+    $query = "SELECT * FROM poli WHERE id_poli = ?";
+    
+    // Gunakan prepared statement untuk menghindari SQL injection
+    if ($stmt = $conn->prepare($query)) {
+        $stmt->bind_param("i", $idPoli);  // "i" berarti parameter integer
+        $stmt->execute();
+        $result = $stmt->get_result();
+        
+        if ($result->num_rows > 0) {
+            // Ambil data poli
+            $poli = $result->fetch_assoc();
+        } else {
+            echo "Poli tidak ditemukan!";
+        }
+
+        $stmt->close();
+    } else {
+        echo "Error pada query: " . $conn->error;
+    }
+} else {
+    echo "ID Poli tidak ditemukan!";
+}
+?>
 <!DOCTYPE html>
 <html lang="zxx">
   <head>
@@ -65,7 +100,7 @@
             <li class="nav-item active">
             <a class="nav-link" href="landingPage.php">Beranda</a>
             </li>
-             <li class="nav-item"><a class="nav-link" href="about.html">Tentang Kami</a></li>
+             <li class="nav-item"><a class="nav-link" href="tentang.php">Tentang Kami</a></li>
     
             <li class="nav-item"><a class="nav-link" href="poli.php">Poli</a></li>
     
@@ -73,7 +108,7 @@
               <a class="nav-link dropdown-toggle" href="dokter.php" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dokter <i class="icofont-thin-down"></i></a>
               <ul class="dropdown-menu" aria-labelledby="dropdown03">
                 <li><a class="dropdown-item" href="dokter.php">Dokter</a></li>
-                <li><a class="dropdown-item" href="appoinment.html">Membuat Janji</a></li>
+                <li><a class="dropdown-item" href="janji.php">Membuat Janji</a></li>
               </ul>
               </li>
     
@@ -104,12 +139,12 @@
       </div>
     </section>
 
-    <section class="section department-single">
+    <section class="section poliSingle.php">
       <div class="container">
         <div class="row">
           <div class="col-lg-12">
             <div class="department-img">
-              <img src="images/service/bg-1.jpg" alt="" class="img-fluid" />
+              <img src="images/service/<?= htmlspecialchars($poli['image']) ?>" alt="" class="img-fluid" />
             </div>
           </div>
         </div>
@@ -117,13 +152,10 @@
         <div class="row">
           <div class="col-lg-8">
             <div class="department-content mt-5">
-              <h3 class="text-md">Poli THT (Telinga, Hidung, Tenggorokan)</h3>
+              <h3 class="text-md"><?= htmlspecialchars($poli['nama_poli']) ?></h3>
               <div class="divider my-4"></div>
               <p class="lead">
-                Menangani masalah kesehatan terkait dengan telinga, hidung, tenggorokan, dan saluran pernapasan atas, termasuk gangguan pendengaran, infeksi saluran pernapasan, dan gangguan lainnya.
-              </p>
-              <p>
-                penjelasan
+              <?= htmlspecialchars($poli['deskripsi_poli']) ?>
               </p>
             </div>
           </div>

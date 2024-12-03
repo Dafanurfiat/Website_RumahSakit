@@ -71,7 +71,7 @@ $poliResult = mysqli_query($conn, "SELECT * FROM poli");
 				  <li class="nav-item active">
 					<a class="nav-link" href="landingPage.php">Beranda</a>
 				  </li>
-				   <li class="nav-item"><a class="nav-link" href="about.html">Tentang Kami</a></li>
+				   <li class="nav-item"><a class="nav-link" href="tentang.php">Tentang Kami</a></li>
 	
 					<li class="nav-item"><a class="nav-link" href="poli.php">Poli</a></li>
 	
@@ -79,7 +79,7 @@ $poliResult = mysqli_query($conn, "SELECT * FROM poli");
 						<a class="nav-link dropdown-toggle" href="dokter.php" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dokter <i class="icofont-thin-down"></i></a>
 						<ul class="dropdown-menu" aria-labelledby="dropdown03">
 							<li><a class="dropdown-item" href="dokter.php">Dokter</a></li>
-							<li><a class="dropdown-item" href="appoinment.html">Membuat Janji</a></li>
+							<li><a class="dropdown-item" href="janji.php">Membuat Janji</a></li>
 						</ul>
 					  </li>
 	
@@ -150,7 +150,7 @@ $poliResult = mysqli_query($conn, "SELECT * FROM poli");
 		            </div>
 	            </div>
                 <div class="content mt-3">
-                	<h4 class="mb-0"><a href="doctor-single.html"><?= htmlspecialchars($dokter['nama_dokter']) ?></a></h4>
+                	<h4 class="mb-0"><a href="dokterSingle.php?id_dokter=<?=$dokter['id_dokter'] ?>"><?= htmlspecialchars($dokter['nama_dokter']) ?></a></h4>
                 	<p> <?php $poli = mysqli_fetch_assoc(mysqli_query($conn, "SELECT nama_poli FROM poli WHERE id_poli = {$dokter['id_poli']}")); echo htmlspecialchars($poli['nama_poli']);?></p>
                 </div> 
 	      	</div>

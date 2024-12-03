@@ -83,6 +83,7 @@ if (!isset($_SESSION['id_pasien'])) {
 	
 					  <li class="nav-item"><a class="nav-link" href="blog-sidebar.php">blog</a></li>
 				   <li class="nav-item"><a class="nav-link" href="contact.php">Kontak</a></li>
+				   <li class="nav-item"><a class="nav-link" href="function\logout.php">Logout</a></li>
 				</ul>
 			  </div>
 			</div>
@@ -382,7 +383,7 @@ if (!isset($_SESSION['id_pasien'])) {
 				<div class="testimonial-block">
 					<div class="client-info">
 						<h4>Choose quality service over cheap service all type of things</h4>
-						<span>waktu_berita </span>
+						<span>waktu_berita</span>
 					</div>
 					<p>
 						Pelayanan yang sangat memuaskan, fasilitas yang lengkap dan staf yang sangat ramah. Saya merasa diperhatikan dengan baik selama proses perawatan.

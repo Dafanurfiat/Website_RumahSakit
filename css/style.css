@@ -456,7 +456,7 @@ a:focus {
 }
 
 .bg-1 {
-  background: url("../images/bg/22.jpg") no-repeat 50% 50%;
+  background: url("../images/bg/22.png") no-repeat 50% 50%;
   background-size: cover;
   position: relative;
 }
@@ -868,7 +868,7 @@ a:focus {
   left: 0px;
   position: absolute;
   content: "";
-  background: url("../images/bg/bg-2.jpg") no-repeat 50% 50%;
+  background: url("../images/bg/bg-2.png") no-repeat 50% 50%;
 }
 
 .testimonial .slick-dots {
@@ -1498,7 +1498,7 @@ a:focus {
 
 .rekam-medis h2 {
   font-family: 'Arial', sans-serif;
-  color: #007bff; /* Highlighted blue color */
+  color: gray; /* Highlighted blue color */
   font-weight: bold;
   margin-bottom: 1.5rem;
 }

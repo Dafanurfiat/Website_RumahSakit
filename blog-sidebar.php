@@ -1,3 +1,9 @@
+<?php
+include 'function/function.php';
+
+$beritaResult = mysqli_query($conn, "SELECT * FROM berita");
+?>
+
 <!DOCTYPE html>
 <html lang="zxx">
   <head>
@@ -29,7 +35,7 @@
   </head>
 
   <body id="top">
-	<header>
+  <header>
 		<div class="header-top-bar">
 			<div class="container">
 				<div class="row align-items-center">
@@ -77,8 +83,9 @@
 						</ul>
 					  </li>
 	
-					  <li class="nav-item"><a class="nav-link" href="blog-sidebar.html">blog</a></li>
-				   <li class="nav-item"><a class="nav-link" href="contact.html">Kontak</a></li>
+					  <li class="nav-item"><a class="nav-link" href="blog-sidebar.php">Berita</a></li>
+				   <li class="nav-item"><a class="nav-link" href="contact.php">Kontak</a></li>
+				   <li class="nav-item"><a class="nav-link" href="function\logout.php">Logout</a></li>
 				</ul>
 			  </div>
 			</div>
@@ -93,8 +100,8 @@
     <div class="row">
       <div class="col-md-12">
         <div class="block text-center">
-          <span class="text-white">Blog Kami</span>
-          <h1 class="text-capitalize mb-5 text-lg">Blog Artikel</h1>
+          <span class="text-white">Tana Luwu Medical Center</span>
+          <h1 class="text-capitalize mb-5 text-lg">Berita Kami</h1>
 
           <!-- <ul class="list-inline breadcumb-nav">
             <li class="list-inline-item"><a href="landingPage.php" class="text-white">Home</a></li>
@@ -112,37 +119,29 @@
         <div class="row">
             <div class="col-lg-10">
                 <div class="row">
+                    <?php
+                    $beritaResult = mysqli_query($conn, "SELECT * FROM berita");
+                    while ($berita = mysqli_fetch_assoc($beritaResult)) :
+                    ?>
+                    <div class="col-lg-12 col-md-12 mb-5">
+                        <div class="blog-item">
+                            <div class="blog-thumb">
+                                <img src="images/blog/<?php echo htmlspecialchars($berita['gambar']); ?>" alt="" class="img-fluid">
+                            </div>
 
-	<div class="col-lg-12 col-md-12 mb-5">
-		<div class="blog-item">
-			<div class="blog-thumb">
-				<img src="images/blog/blog-1.jpg" alt="" class="img-fluid ">
-			</div>
+                            <h2 class="mt-3 mb-3">
+                                <a href="blog-sidebar.php?id=<?php echo $berita['id_berita']; ?>">
+                                    <?php echo htmlspecialchars($berita['judul_berita']); ?>
+                                </a>
+                            </h2>
 
-				<h2 class="mt-3 mb-3"><a href="blog-sidebar.html">Choose quality service over cheap service  all type of things</a></h2>
-
-				<p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis aliquid architecto facere commodi cupiditate omnis voluptatibus inventore atque velit cum rem id assumenda quam recusandae ipsam ea porro, dicta ad.</p>
-
-			</div>
-		</div>
-	</div>
-
-	<div class="col-lg-12 col-md-12 mb-5">
-		<div class="blog-item">
-			<div class="blog-thumb">
-				<img src="images/blog/blog-2.jpg" alt="" class="img-fluid ">
-			</div>
-
-				<h2 class="mt-3 mb-3"><a href="blog-sidebar.html">Choose quality service over cheap service  all type of things</a></h2>
-
-				<p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis aliquid architecto facere commodi cupiditate omnis voluptatibus inventore atque velit cum rem id assumenda quam recusandae ipsam ea porro, dicta ad.</p>
-
-			</div>
-		</div>
-	</div>
-</div>
-
-</div>
+                            <p class="mb-4">
+                                <?php echo htmlspecialchars(substr($berita['isi_berita'], 0, 500)) . '...'; ?>
+                            </p>
+                        </div>
+                    </div>
+                    <?php endwhile; ?>
+                </div>
             </div>   
         </div>
     </div>

@@ -1,61 +1,3 @@
-<?php
-include 'function/function.php';
-
-session_start();
-
-if (!isset($_SESSION['id_pasien'])) {
-	die("Anda harus login untuk membuat janji.");
-}
-$idPasien = $_SESSION['id_pasien'];
-$jadwalQuery = "SELECT jd.id_jadwal_dokter, jd.hari, jd.jam, d.nama_dokter, d.id_dokter
-                FROM jadwal_dokter jd 
-                INNER JOIN dokter d ON jd.id_dokter = d.id_dokter";
-$jadwalResult = $conn->query($jadwalQuery);
-
-if (!$jadwalResult) {
-	die("Error pada query jadwal dokter: " . $conn->error);
-}
-
-$jadwalDokter = [];
-if ($jadwalResult->num_rows > 0) {
-	while ($row = $jadwalResult->fetch_assoc()) {
-		$jadwalDokter[$row['id_dokter']][] = $row;
-	}
-}
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-	if (isset($_POST['submit'])) {
-		// Pastikan data form diterima
-		if (!isset($_POST['id_jadwal_dokter']) || !isset($_POST['tanggal'])) {
-			die('Data jadwal dokter atau tanggal belum diisi!');
-		}
-
-		// Sanitasi data input
-		$idJadwalDokter = $conn->real_escape_string($_POST['id_jadwal_dokter']);
-		$tanggal = $conn->real_escape_string($_POST['tanggal']);
-
-		// Hitung nomor antrian
-		$queryAntrian = "SELECT MAX(no_antrian) AS max_antrian 
-                     FROM antrian 
-                     WHERE id_jadwal_dokter = '$idJadwalDokter' AND tanggal = '$tanggal'";
-		$resultAntrian = $conn->query($queryAntrian);
-		if (!$resultAntrian) {
-			die("Error pada query antrian: " . $conn->error);
-		}
-
-		$maxAntrian = $resultAntrian->fetch_assoc()['max_antrian'] ?? 0;
-		$noAntrian = $maxAntrian + 1;
-
-		// Simpan data janji
-		$insertQuery = "INSERT INTO antrian (id_pasien, id_jadwal_dokter, tanggal, no_antrian) 
-                    VALUES ('$idPasien', '$idJadwalDokter', '$tanggal', $noAntrian)";
-		if ($conn->query($insertQuery)) {
-			$message = "<div class='alert alert-success' role='alert'> Janji berhasil dibuat! Nomor antrian Anda: $noAntrian </div>";
-		} else {
-			$message = "<div class='alert alert-danger' role='alert'> Gagal membuat janji: " . $conn->error . "</div>";
-		}
-	}
-}
-?>
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -152,85 +94,45 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <div class="col-md-12">
                     <div class="block text-center">
                         <span class="text-white">Tana Luwu Medical Center</span>
-                        <h1 class="text-capitalize mb-5 text-lg">Membuat Janji</h1>
+                        <h1 class="text-capitalize mb-5 text-lg">Hubungi Kami</h1>
 
                         <!-- <ul class="list-inline breadcumb-nav">
             <li class="list-inline-item"><a href="landingPage.php" class="text-white">Home</a></li>
             <li class="list-inline-item"><span class="text-white">/</span></li>
-            <li class="list-inline-item"><a href="#" class="text-white-50">Book your Seat</a></li>
+            <li class="list-inline-item"><a href="#" class="text-white-50">Contact Us</a></li>
           </ul> -->
                     </div>
                 </div>
             </div>
         </div>
     </section>
+    <!-- contact form start -->
 
-    <section class="appoinment section">
+    <section class="section contact-info pb-0" style="margin-bottom: 10%;">
         <div class="container">
             <div class="row">
-                <div class="col-lg-4">
-                    <div class="mt-3">
-                        <div class="feature-icon mb-3">
-                            <i class="icofont-support text-lg"></i>
-                        </div>
-                        <span class="h3">Panggilan untuk Layanan Darurat!</span>
-                        <h2 class="text-color mt-3">+62 3432 3893</h2>
+                <div class="col-lg-4 col-sm-6 col-md-6">
+                    <div class="contact-block mb-4 mb-lg-0">
+                        <i class="icofont-live-support"></i>
+                        <h5>Panngil kami</h5>
+                        +628958029292929
                     </div>
                 </div>
-
-                <div class="col-lg-8">
-                    <div class="appoinment-wrap mt-5 mt-lg-0 pl-lg-5">
-                        <h2 class="mb-2 title-color">Buat Janji dengan Dokter</h2>
-                        <?php if (isset($message)): ?>
-                        <?= $message ?>
-                        <?php endif; ?>
-                        <form id="appoinment-form" class="appoinment-form" method="POST" action="janji.php">
-                            <div class="row">
-                                <!-- Pilihan Dokter -->
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <select class="form-control" id="dokter-select" name="id_dokter"
-                                            onchange="updateJadwal()">
-                                            <option value="">Pilih Dokter</option>
-                                            <?php
-											$dokterQuery = "SELECT id_dokter, nama_dokter FROM dokter";
-											$dokterResult = $conn->query($dokterQuery);
-											while ($dokter = $dokterResult->fetch_assoc()) {
-												echo "<option value='{$dokter['id_dokter']}'>{$dokter['nama_dokter']}</option>";
-											}
-											?>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <!-- Pilihan Jadwal -->
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <select class="form-control" id="jadwal-select" name="id_jadwal_dokter">
-                                            <option value="">Pilih Jadwal Dokter</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-								<!-- Input Tanggal -->
-								<div class="col-lg-6">
-									<div class="form-group">
-										<input name="tanggal" id="date" type="date" class="form-control" placeholder="dd/mm/yyyy">
-									</div>
-								</div>
-
-                                <!-- Tombol Submit -->
-                                <div class="col-lg-12">
-                                    <button type="submit" name="submit" class="btn btn-main btn-round-full">Membuat
-                                        Janji</button>
-                                </div>
-                            </div>
-                        </form>
-
+                <div class="col-lg-4 col-sm-6 col-md-6">
+                    <div class="contact-block mb-4 mb-lg-0">
+                        <i class="icofont-support-faq"></i>
+                        <h5>Email Kami</h5>
+                        Tanaluwumedical@gmail.com
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6 col-md-6">
+                    <div class="contact-block mb-4 mb-lg-0">
+                        <i class="icofont-location-pin"></i>
+                        <h5>Alamat</h5>
+                        Jalan .Paal-2 nomor 45
                     </div>
                 </div>
             </div>
-        </div>
         </div>
     </section>
 
@@ -310,30 +212,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
         </div>
     </footer>
-    <script>
-    // Data jadwal dokter dalam format JSON (dari PHP)
-    const jadwalDokter = <?= json_encode($jadwalDokter) ?>;
 
-    // Update pilihan jadwal dokter berdasarkan dokter yang dipilih
-    function updateJadwal() {
-        const dokterSelect = document.getElementById('dokter-select');
-        const jadwalSelect = document.getElementById('jadwal-select');
-        const selectedDokter = dokterSelect.value;
 
-        // Hapus semua opsi jadwal sebelumnya
-        jadwalSelect.innerHTML = '<option value="">Pilih Jadwal Dokter</option>';
-
-        // Jika ada dokter yang dipilih, tambahkan jadwalnya
-        if (selectedDokter && jadwalDokter[selectedDokter]) {
-            jadwalDokter[selectedDokter].forEach(jadwal => {
-                const option = document.createElement('option');
-                option.value = jadwal.id_jadwal_dokter;
-                option.textContent = `${jadwal.hari}, ${jadwal.jam}`;
-                jadwalSelect.appendChild(option);
-            });
-        }
-    }
-    </script>
     <!-- 
     Essential Scripts
     =====================================-->

@@ -1,5 +1,11 @@
 <?php
 include 'function/function.php';
+session_start();
+
+if (!isset($_SESSION['id_pasien'])) {
+    header('Location: index.php');
+    exit; // Jangan lanjutkan eksekusi setelah redirect
+}
 
 $beritaResult = mysqli_query($conn, "SELECT * FROM berita");
 ?>
@@ -126,7 +132,7 @@ $beritaResult = mysqli_query($conn, "SELECT * FROM berita");
                     <div class="col-lg-12 col-md-12 mb-5">
                         <div class="blog-item">
                             <div class="blog-thumb">
-                                <img src="images/blog/<?php echo htmlspecialchars($berita['gambar']); ?>" alt="" class="img-fluid">
+                                <img src="images/berita/<?php echo htmlspecialchars($berita['gambar']); ?>" alt="" class="img-fluid">
                             </div>
 
                             <h2 class="mt-3 mb-3">

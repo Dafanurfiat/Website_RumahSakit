@@ -4,8 +4,10 @@ include 'function.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Ambil data dari form
+    $id_berita = $_POST['id_berita'];
     $judul_berita = $_POST['judul_berita'];
     $isi_berita = $_POST['isi_berita'];
+    $waktu_berita = date('Y-m-d H:i:s'); // Waktu saat ini
 
     // Proses file gambar
     $gambar = $_FILES['gambar']['name'];  // Nama file gambar
@@ -28,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Gambar berhasil diupload
 
         // Masukkan data ke database
-        $sql = "INSERT INTO berita (judul_berita, isi_berita, waktu_berita, gambar) VALUES ('$judul_berita', '$isi_berita', '$waktu_berita', '$gambar')";
+        $sql = "INSERT INTO berita (id_berita, judul_berita, isi_berita, gambar) VALUES ('$id_berita', '$judul_berita', '$isi_berita', '$gambar')";
         if (mysqli_query($conn, $sql)) {
             header("Location: ../admin/manajemenberita.php"); // Arahkan ke halaman manajemen berita setelah berhasil
         } else {

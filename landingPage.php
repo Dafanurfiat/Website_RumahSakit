@@ -1,4 +1,4 @@
-<?php 
+<?php
 include 'function/function.php';
 session_start();
 
@@ -6,7 +6,20 @@ if (!isset($_SESSION['id_pasien'])) {
     header('Location: index.php');
     exit; // Jangan lanjutkan eksekusi setelah redirect
 }
-include 'function/function.php';
+$idPasien = $_SESSION['id_pasien'];
+
+$queryRekamMedis = "SELECT * FROM rekam_medis WHERE id_pasien = '$idPasien'";
+$result = mysqli_query($conn, $queryRekamMedis);
+
+if (!$result) {
+    die("Error pada query: " . mysqli_error($conn));
+}
+
+$rekamMedis = [];
+while ($row = mysqli_fetch_assoc($result)) {
+    $rekamMedis[] = $row;
+}
+echo $queryRekamMedis;
 
 $beritaResult = mysqli_query($conn, "SELECT * FROM berita");
 ?>
@@ -111,7 +124,7 @@ $beritaResult = mysqli_query($conn, "SELECT * FROM berita");
                         <div class="divider mb-3"></div>
                         <span class="text-uppercase text-sm letter-spacing ">Kesehatan Anda, Prioritas Kami di Jantung
                             Tana Luwu</span>
-                        <h1 class="mb-3 mt-3">Tana Luwu Medical Center</h1>
+                        <h1 class="mb-3 mt-3">Halo <?php echo $_SESSION['username'] ?>!</h1>
 
                         <p class="mb-4 pr-5">Solusi kesehatan terpercaya di jantung Tana Luwu, memadukan keahlian modern
                             dengan pelayanan penuh kepedulian.</p>
@@ -192,60 +205,60 @@ $beritaResult = mysqli_query($conn, "SELECT * FROM berita");
                         <p class="mt-4 mb-5">Kami menyediakan layanan medis terbaik dan terpercaya. Komitmen kami adalah
                             memberikan pelayanan berkualitas yang mengutamakan kenyamanan dan kesehatan Anda.</p>
 
-					<a href="poli.php" class="btn btn-main-2 btn-round-full btn-icon">Poli<i class="icofont-simple-right ml-3"></i></a>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
-<section class="cta-section ">
-	<div class="container">
-		<div class="cta position-relative">
-			<div class="row">
-				<div class="col-lg-3 col-md-6 col-sm-6">
-					<div class="counter-stat">
-						<i class="icofont-doctor"></i>
-						<span class="h3">75</span>k
-						<p>Orang yang Bahagia</p>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-6 col-sm-6">
-					<div class="counter-stat">
-						<i class="icofont-flag"></i>
-						<span class="h3">460</span>+
-						<p>Operasi Selesai</p>
-					</div>
-				</div>
-				
-				<div class="col-lg-3 col-md-6 col-sm-6">
-					<div class="counter-stat">
-						<i class="icofont-badge"></i>
-						<span class="h3">3</span>+
-						<p>Dokter Ahli</p>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-6 col-sm-6">
-					<div class="counter-stat">
-						<i class="icofont-globe"></i>
-						<span class="h3">2</span>
-						<p>Cabang Indonesia</p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
-<section class="section service gray-bg">
-	<div class="container">
-		<div class="row justify-content-center">
-			<div class="col-lg-7 text-center">
-				<div class="section-title">
-					<h2>Perawatan Pasien yang Terbaik dan Terpercaya</h2>
-					<div class="divider mx-auto my-4"></div>
-					<p>Kami berkomitmen untuk memberikan perawatan pasien yang terbaik, dengan layanan yang telah diakui secara nasional. Kami mendengarkan kebutuhan Anda dan memberikan solusi kesehatan yang terbaik.</p>
-				</div>
-			</div>
-		</div>
+                        <a href="poli.php" class="btn btn-main-2 btn-round-full btn-icon">Poli<i class="icofont-simple-right ml-3"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="cta-section ">
+        <div class="container">
+            <div class="cta position-relative">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="counter-stat">
+                            <i class="icofont-doctor"></i>
+                            <span class="h3">75</span>k
+                            <p>Orang yang Bahagia</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="counter-stat">
+                            <i class="icofont-flag"></i>
+                            <span class="h3">460</span>+
+                            <p>Operasi Selesai</p>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="counter-stat">
+                            <i class="icofont-badge"></i>
+                            <span class="h3">3</span>+
+                            <p>Dokter Ahli</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="counter-stat">
+                            <i class="icofont-globe"></i>
+                            <span class="h3">2</span>
+                            <p>Cabang Indonesia</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section service gray-bg">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-7 text-center">
+                    <div class="section-title">
+                        <h2>Perawatan Pasien yang Terbaik dan Terpercaya</h2>
+                        <div class="divider mx-auto my-4"></div>
+                        <p>Kami berkomitmen untuk memberikan perawatan pasien yang terbaik, dengan layanan yang telah diakui secara nasional. Kami mendengarkan kebutuhan Anda dan memberikan solusi kesehatan yang terbaik.</p>
+                    </div>
+                </div>
+            </div>
 
             <div class="row">
                 <div class="col-lg-4 col-md-6 col-sm-6">
@@ -329,9 +342,11 @@ $beritaResult = mysqli_query($conn, "SELECT * FROM berita");
                 <table class="table table-bordered table-hover">
                     <thead class="thead-dark">
                         <tr>
-                            <th scope="col">No</th>
-                            <th scope="col">Dokter Penanggung Jawab</th>
+                            <th scope="col">ID Rekam Medis</th>
+                            <th scope="col">ID Pasien</th>
+                            <th scope="col">ID Antrian</th>
                             <th scope="col">Diagnosa</th>
+                            <th scope="col">ID dokter</th>
                             <th scope="col">Tekanan Darah Tinggi</th>
                             <th scope="col">Berat Badan (kg)</th>
                             <th scope="col">Tinggi Badan (cm)</th>
@@ -340,37 +355,20 @@ $beritaResult = mysqli_query($conn, "SELECT * FROM berita");
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Dr. Budi Santoso</td>
-                            <td>Hipertensi</td>
-                            <td>Ya</td>
-                            <td>70</td>
-                            <td>175</td>
-                            <td>36.8</td>
-                            <td>Amlodipine</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Dr. Siti Aminah</td>
-                            <td>Diabetes Mellitus</td>
-                            <td>Tidak</td>
-                            <td>65</td>
-                            <td>165</td>
-                            <td>37.0</td>
-                            <td>Metformin</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Dr. Andi Pratama</td>
-                            <td>Infeksi Saluran Pernapasan</td>
-                            <td>Tidak</td>
-                            <td>55</td>
-                            <td>160</td>
-                            <td>37.5</td>
-                            <td>Paracetamol</td>
-                        </tr>
-                    </tbody>
+        <?php foreach ($rekamMedis as $medis_row): ?>
+            <tr>
+                <td><?= htmlspecialchars($medis_row["id_rekam_medis"]); ?></td>
+                <td><?= htmlspecialchars($medis_row["id_pasien"]); ?></td>
+                <td><?= htmlspecialchars($medis_row["id_antrian"]); ?></td>
+                <td><?= htmlspecialchars($medis_row["diagnosa"]); ?></td>
+                <td><?= htmlspecialchars($medis_row["id_dokter"]); ?></td>
+                <td><?= htmlspecialchars($medis_row["tekanan_darah_tinggi"]); ?></td>
+                <td><?= htmlspecialchars($medis_row["berat_badan"]); ?></td>
+                <td><?= htmlspecialchars($medis_row["tinggi_badan"]); ?></td>
+                <td><?= htmlspecialchars($medis_row["suhu_badan"]); ?></td>
+                <td><?= htmlspecialchars($medis_row["obat"]); ?></td>
+            </tr>
+        <?php endforeach; ?>
                 </table>
             </div>
         </div>
@@ -393,39 +391,39 @@ $beritaResult = mysqli_query($conn, "SELECT * FROM berita");
     </section>
 
     <section class="section testimonial">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6 offset-lg-6">
-                <div class="section-title">
-                    <h2 class="mb-4">Apa Kata Mereka Tentang Kami</h2>
-                    <div class="divider my-4"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 offset-lg-6">
+                    <div class="section-title">
+                        <h2 class="mb-4">Apa Kata Mereka Tentang Kami</h2>
+                        <div class="divider my-4"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row align-items-center">
+                <div class="col-lg-6 testimonial-wrap offset-lg-6">
+                    <?php
+                    // Query untuk mengambil berita dari database
+                    $beritaResult = mysqli_query($conn, "SELECT * FROM berita");
+
+                    // Menampilkan setiap berita dalam sebuah blok testimonial
+                    while ($berita = mysqli_fetch_assoc($beritaResult)) :
+                    ?>
+                        <div class="testimonial-block">
+                            <div class="client-info">
+                                <h4><?php echo htmlspecialchars($berita['judul_berita']); ?></h4>
+                                <span><?php echo htmlspecialchars($berita['waktu_berita']); ?></span>
+                            </div>
+                            <p>
+                                <?php echo htmlspecialchars(substr($berita['isi_berita'], 0, 150)) . '...'; ?>
+                            </p>
+                        </div>
+                    <?php endwhile; ?>
                 </div>
             </div>
         </div>
-        
-        <div class="row align-items-center">
-            <div class="col-lg-6 testimonial-wrap offset-lg-6">
-                <?php
-                // Query untuk mengambil berita dari database
-                $beritaResult = mysqli_query($conn, "SELECT * FROM berita");
-                
-                // Menampilkan setiap berita dalam sebuah blok testimonial
-                while ($berita = mysqli_fetch_assoc($beritaResult)) :
-                ?>
-                    <div class="testimonial-block">
-                        <div class="client-info">
-                            <h4><?php echo htmlspecialchars($berita['judul_berita']); ?></h4>
-                            <span><?php echo htmlspecialchars($berita['waktu_berita']); ?></span>
-                        </div>
-                        <p>
-                            <?php echo htmlspecialchars(substr($berita['isi_berita'], 0, 150)) . '...'; ?>
-                        </p>
-                    </div>
-                <?php endwhile; ?>
-            </div>
-        </div>
-    </div>
-</section>
+    </section>
 
     <!-- footer Start -->
     <footer class="footer section gray-bg">

@@ -11,6 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $new_id_berita = $_POST['new_id_berita'];
     $judul_berita = $_POST['judul_berita'];
     $isi_berita = $_POST['isi_berita'];
+    $waktu_berita = $_POST['waktu_berita'];
 
     // File upload handling
     if (isset($_FILES['gambar']) && $_FILES['gambar']['error'] == 0) {
@@ -44,6 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     id_berita = '$new_id_berita', 
                     judul_berita = '$judul_berita', 
                     isi_berita = '$isi_berita', 
+                    waktu_berita = '$waktu_berita',
                     gambar = '$gambar' 
                 WHERE id_berita = '$id_berita'";
 
@@ -87,6 +89,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             ID Berita: <input type="number" name="new_id_berita" value="<?php echo $Berita['id_berita']; ?>" required><br>
             Nama Berita: <input type="text" name="judul_berita" value="<?php echo $Berita['judul_berita']; ?>" required><br>
             Isi Berita: <textarea name="isi_berita" required><?php echo $Berita['isi_berita']; ?></textarea><br>
+            Waktu Berita: <input type="datetime-local" name="waktu_berita" value="<?php echo date('Y-m-d\TH:i', strtotime($Berita['waktu_berita'])); ?>" required><br>
             Gambar: <input type="file" name="gambar"><br>
             <img src="../images/berita/<?php echo $Berita['gambar']; ?>" alt="Current gambar" width="100"><br>
             <button type="submit">Simpan</button>

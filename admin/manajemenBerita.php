@@ -74,6 +74,7 @@ $berita = query("SELECT * FROM berita");
 <div class="tableFix">
     <table id="table">
         <tr>
+            <th>ID berita</th>
             <th>Judul berita</th>
             <th>Isi berita</th>
             <th>Waktu Berita</th>
@@ -86,7 +87,7 @@ $berita = query("SELECT * FROM berita");
             <td><?= $berita_row["judul_berita"]; ?></td>
             <td><?= $berita_row["isi_berita"]; ?></td>
             <td><?= $berita_row["waktu_berita"]; ?></td>
-            <td><img src="../images/service/<?= $berita_row["gambar"]; ?>" alt=""></td>
+            <td><img src="../images/berita/<?= $berita_row["gambar"]; ?>" alt=""></td>
             <td>
                 <a href="../function/edit_berita.php?id_berita=<?= $berita_row["id_berita"] ?>" class="edit">Edit</a> || 
                 <a href="../function/hapus_berita.php?id_berita=<?= $berita_row["id_berita"] ?>" class="hapus">Hapus</a>
@@ -119,7 +120,6 @@ $berita = query("SELECT * FROM berita");
                 <input type="number" placeholder="ID berita" name="berita_id" required>
                 <input type="text" placeholder="Judul berita" name="judul_berita" required>
                 <textarea placeholder="isi_berita" name="isi_berita" required></textarea>
-                <input type="date" placeholder="waktu_berita" name="waktu_berita" required>
                 <input type="file" name="gambar" required>
                 <input type="submit" value="simpan">
             </form>

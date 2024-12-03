@@ -1,11 +1,6 @@
 <?php 
 include "function/function.php";
 
-if (!isset($_SESSION['id_pasien'])) {
-  header('Location: index.php');
-  exit; // Jangan lanjutkan eksekusi setelah redirect
-}
-
 $idPoli = isset($_GET['id_poli']) ? $_GET['id_poli'] : null;
 
 if ($idPoli) {

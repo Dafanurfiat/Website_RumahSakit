@@ -42,7 +42,7 @@
 					<div class="col-lg-6">
 						<div class="text-lg-right top-right-bar mt-2 mt-lg-0">
 							<a href="tel:+23-345-67890" >
-								<span>Panggil Sekarang: </span>
+								<span>Pangil Sekarang: </span>
 								<span class="h4">08958029292929</span>
 							</a>
 						</div>

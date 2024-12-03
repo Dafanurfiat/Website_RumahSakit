@@ -173,7 +173,7 @@ if (!isset($_SESSION['id_pasien'])) {
 					<h2 class="title-color">Perawatan Pribadi <br>& Hidup Sehat</h2>
 					<p class="mt-4 mb-5">Kami menyediakan layanan medis terbaik dan terpercaya. Komitmen kami adalah memberikan pelayanan berkualitas yang mengutamakan kenyamanan dan kesehatan Anda.</p>
 
-					<a href="service.html" class="btn btn-main-2 btn-round-full btn-icon">Poli<i class="icofont-simple-right ml-3"></i></a>
+					<a href="poli.php" class="btn btn-main-2 btn-round-full btn-icon">Poli<i class="icofont-simple-right ml-3"></i></a>
 				</div>
 			</div>
 		</div>
@@ -216,6 +216,7 @@ if (!isset($_SESSION['id_pasien'])) {
 		</div>
 	</div>
 </section>
+
 <section class="section service gray-bg">
 	<div class="container">
 		<div class="row justify-content-center">
@@ -294,6 +295,63 @@ if (!isset($_SESSION['id_pasien'])) {
 		</div>
 	</div>
 </section>
+
+<section id="rekam-medis" class="rekam-medis py-5">
+    <div class="container">
+      <h2 class="text-center mb-4">Rekam Medis Pasien</h2>
+
+      <!-- Table -->
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">No</th>
+              <th scope="col">Dokter Penanggung Jawab</th>
+              <th scope="col">Diagnosa</th>
+              <th scope="col">Tekanan Darah Tinggi</th>
+              <th scope="col">Berat Badan (kg)</th>
+              <th scope="col">Tinggi Badan (cm)</th>
+              <th scope="col">Suhu Badan (°C)</th>
+              <th scope="col">Obat</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>Dr. Budi Santoso</td>
+              <td>Hipertensi</td>
+              <td>Ya</td>
+              <td>70</td>
+              <td>175</td>
+              <td>36.8</td>
+              <td>Amlodipine</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Dr. Siti Aminah</td>
+              <td>Diabetes Mellitus</td>
+              <td>Tidak</td>
+              <td>65</td>
+              <td>165</td>
+              <td>37.0</td>
+              <td>Metformin</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>Dr. Andi Pratama</td>
+              <td>Infeksi Saluran Pernapasan</td>
+              <td>Tidak</td>
+              <td>55</td>
+              <td>160</td>
+              <td>37.5</td>
+              <td>Paracetamol</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
 <section class="section testimonial-2 gray-bg">
 	<div class="container">
 		<div class="row justify-content-center">
@@ -307,85 +365,28 @@ if (!isset($_SESSION['id_pasien'])) {
 		</div>
 	</div>
 
+</section>
+
+<section class="section testimonial">
 	<div class="container">
+		<div class="row">
+			<div class="col-lg-6 offset-lg-6">
+				<div class="section-title">
+					<h2 class="mb-4"><a href= "blog-sidebar.php">Artikel</a></h2>
+					<div class="divider my-4"></div>
+				</div>
+			</div>
+		</div>
 		<div class="row align-items-center">
-			<div class="col-lg-12 testimonial-wrap-2">
-				<div class="testimonial-block style-2  gray-bg">
-					<i class="icofont-quote-right"></i>
-
-					<div class="testimonial-thumb">
-						<img src="images/team/test-thumb1.jpg" alt="" class="img-fluid">
-					</div>
-
-					<div class="client-info ">
-						<h4>Pelayanan yang Sangat Baik!</h4>
-						<span>John Partho</span>
-						<p>
-							Pelayanan ramah, cepat, dan profesional. Dokter serta staf sangat membantu, membuat kami merasa nyaman dan aman.
-						</p>
-					</div>
-				</div>
-
-				<div class="testimonial-block style-2  gray-bg">
-					<div class="testimonial-thumb">
-						<img src="images/team/test-thumb2.jpg" alt="" class="img-fluid">
-					</div>
-
+			<div class="col-lg-6 testimonial-wrap offset-lg-6">
+				<div class="testimonial-block">
 					<div class="client-info">
-						<h4>Dokter Berkemampuan Mumpuni</h4>
-						<span>Mullar Sarth</span>
-						<p>
-							Dokter di Tana Luwu sangat profesional dan berpengalaman. Mereka memberikan penjelasan yang jelas dan membuat saya merasa tenang selama proses perawatan
-						</p>
+						<h4>Choose quality service over cheap service all type of things</h4>
+						<span>waktu_berita </span>
 					</div>
-					
-					<i class="icofont-quote-right"></i>
-				</div>
-
-				<div class="testimonial-block style-2  gray-bg">
-					<div class="testimonial-thumb">
-						<img src="images/team/test-thumb3.jpg" alt="" class="img-fluid">
-					</div>
-
-					<div class="client-info">
-						<h4>Lingkungan yang Nyaman!</h4>
-						<span>Kolis Mullar</span>
-						<p>
-							Rumah sakit ini memiliki lingkungan yang sangat nyaman dan tenang. Fasilitasnya modern dan membuat pasien merasa seperti di rumah.
-						</p>
-					</div>
-					
-					<i class="icofont-quote-right"></i>
-				</div>
-
-				<div class="testimonial-block style-2  gray-bg">
-					<div class="testimonial-thumb">
-						<img src="images/team/test-thumb4.jpg" alt="" class="img-fluid">
-					</div>
-
-					<div class="client-info">
-						<h4>Kebersihan Terjaga dengan baik</h4>
-						<span>Partho Sarothi</span>
-						<p class="mt-4">
-							Tana Luwu Medical Center selalu menjaga kebersihan dengan sangat baik. Setiap ruang dan area selalu terawat, memberikan rasa aman dan nyaman bagi pasien
-						</p>
-					</div>
-					<i class="icofont-quote-right"></i>
-				</div>
-
-				<div class="testimonial-block style-2  gray-bg">
-					<div class="testimonial-thumb">
-						<img src="images/team/test-thumb1.jpg" alt="" class="img-fluid">
-					</div>
-
-					<div class="client-info">
-						<h4>Peralatan yang Lengkap!</h4>
-						<span>Kolis Mullar</span>
-						<p>
-							Peralatan medis di Tana Luwu Medical Center sangat lengkap dan modern. Saya merasa yakin perawatan yang diberikan menggunakan teknologi terbaru untuk hasil yang terbaik
-						</p>
-					</div>
-					<i class="icofont-quote-right"></i>
+					<p>
+						Pelayanan yang sangat memuaskan, fasilitas yang lengkap dan staf yang sangat ramah. Saya merasa diperhatikan dengan baik selama proses perawatan.
+					</p>
 				</div>
 			</div>
 		</div>

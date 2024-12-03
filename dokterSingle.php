@@ -145,11 +145,11 @@ if ($result->num_rows > 0) {
 
 			<div class="col-lg-8 col-md-6">
 				<div class="doctor-details mt-4 mt-lg-0">
-					<h2 class="text-md">Introducing to myself</h2>
+					<h2 class="text-md">Tentang Dokter</h2>
 					<div class="divider my-4"></div>
-					<p><?= htmlspecialchars($dokter['deskripsi']) ?></p>
+					<p style="text-align: justify;"><?= htmlspecialchars($dokter['deskripsi']) ?></p>
 
-					<a href="janji.php" class="btn btn-main-2 btn-round-full mt-3">Make an Appoinment<i class="icofont-simple-right ml-2  "></i></a>
+					<a href="janji.php" class="btn btn-main-2 btn-round-full mt-3">Membuat Janji<i class="icofont-simple-right ml-2  "></i></a>
 				</div>
 			</div>
 		</div>
@@ -163,7 +163,7 @@ if ($result->num_rows > 0) {
         <div class="row">
             <div class="col">
                 <div class="sidebar-widget bg-light p-4 rounded shadow-sm">
-                    <h5 class="mb-4 text-center font-weight-bold">Make Appointment</h5>
+                    <h5 class="mb-4 text-center font-weight-bold">Membuat Janji</h5>
 
 					<ul class="list-unstyled lh-35">
 						<?php foreach ($jadwal_list as $jadwal): ?>
@@ -177,8 +177,8 @@ if ($result->num_rows > 0) {
 
                     <div class="sidebar-contact-info mt-4 text-center">
                         <p class="mb-0">Need Urgent Help?</p>
-                        <h3 class="text-primary font-weight-bold"><?= htmlspecialchars($dokter['no_wa']) ?></h3>
-                        <a href="tel:<?= htmlspecialchars($dokter['no_wa']) ?>" class="btn btn-primary btn-sm mt-3">Call Now</a>
+                        <h3 class="text-primary font-weight-bold"><?= htmlspecialchars(str_replace('+62', '0', $dokter['no_wa'])) ?></h3>
+                        <a href="https://wa.me/<?= htmlspecialchars($dokter['no_wa']) ?>" class="btn btn-main-2 btn-round-full mt-3">Call Now</a>
                     </div>
                 </div>
             </div>
@@ -196,65 +196,45 @@ if ($result->num_rows > 0) {
 					<div class="logo mb-4">
 						<img src="images/logo.png" alt="" class="img-fluid">
 					</div>
-					<p>Tempora dolorem voluptatum nam vero assumenda voluptate, facilis ad eos obcaecati tenetur veritatis eveniet distinctio possimus.</p>
-
-					<ul class="list-inline footer-socials mt-4">
-						<li class="list-inline-item"><a href="https://www.facebook.com/themefisher"><i class="icofont-facebook"></i></a></li>
-						<li class="list-inline-item"><a href="https://twitter.com/themefisher"><i class="icofont-twitter"></i></a></li>
-						<li class="list-inline-item"><a href="https://www.pinterest.com/themefisher/"><i class="icofont-linkedin"></i></a></li>
-					</ul>
+					<p>
+						Tana Luwu Medical Center di Liwas, Manado, Sulawesi Utara, menyediakan layanan kesehatan berkualitas dengan fasilitas modern dan tenaga medis profesional, berfokus pada kenyamanan dan keselamatan pasien.</p>
 				</div>
 			</div>
 
 			<div class="col-lg-2 col-md-6 col-sm-6">
 				<div class="widget mb-5 mb-lg-0">
-					<h4 class="text-capitalize mb-3">Department</h4>
+					<h4 class="text-capitalize mb-3">Poli</h4>
 					<div class="divider mb-4"></div>
 
 					<ul class="list-unstyled footer-menu lh-35">
-						<li><a href="#">Surgery </a></li>
-						<li><a href="#">Wome's Health</a></li>
-						<li><a href="#">Radiology</a></li>
-						<li><a href="#">Cardioc</a></li>
-						<li><a href="#">Medicine</a></li>
-					</ul>
-				</div>
-			</div>
-
-			<div class="col-lg-2 col-md-6 col-sm-6">
-				<div class="widget mb-5 mb-lg-0">
-					<h4 class="text-capitalize mb-3">Support</h4>
-					<div class="divider mb-4"></div>
-
-					<ul class="list-unstyled footer-menu lh-35">
-						<li><a href="#">Terms & Conditions</a></li>
-						<li><a href="#">Privacy Policy</a></li>
-						<li><a href="#">Company Support </a></li>
-						<li><a href="#">FAQuestions</a></li>
-						<li><a href="#">Company Licence</a></li>
+						<li><a href="poli.php">Penyakit Dalam </a></li>
+						<li><a href="poli.php">Kandungan dan anak</a></li>
+						<li><a href="poli.php">Umum</a></li>
+						<li><a href="poli.php">THT</a></li>
+						<li><a href="poli.php">Gigi</a></li>
 					</ul>
 				</div>
 			</div>
 
 			<div class="col-lg-3 col-md-6 col-sm-6">
 				<div class="widget widget-contact mb-5 mb-lg-0">
-					<h4 class="text-capitalize mb-3">Get in Touch</h4>
+					<h4 class="text-capitalize mb-3">Hubungi Kami</h4>
 					<div class="divider mb-4"></div>
 
 					<div class="footer-contact-block mb-4">
 						<div class="icon d-flex align-items-center">
 							<i class="icofont-email mr-3"></i>
-							<span class="h6 mb-0">Support Available for 24/7</span>
+							<span class="h6 mb-0">Dukungan Tersedia 24/7</span>
 						</div>
-						<h4 class="mt-2"><a href="tel:+23-345-67890">Support@email.com</a></h4>
+						<h4 class="mt-2"><a href="tel:+6208958029292929">Tanaluwumedical@gmail.com</a></h4>
 					</div>
 
 					<div class="footer-contact-block">
 						<div class="icon d-flex align-items-center">
 							<i class="icofont-support mr-3"></i>
-							<span class="h6 mb-0">Mon to Fri : 08:30 - 18:00</span>
+							<span class="h6 mb-0">Senin sampai Juma'at : 08:30 - 18:00</span>
 						</div>
-						<h4 class="mt-2"><a href="tel:+23-345-67890">+23-456-6588</a></h4>
+						<h4 class="mt-2"><a href="tel:+6208958029292929">+6208958029292929</a></h4>
 					</div>
 				</div>
 			</div>
@@ -264,17 +244,10 @@ if ($result->num_rows > 0) {
 			<div class="row align-items-center justify-content-between">
 				<div class="col-lg-6">
 					<div class="copyright">
-						&copy; Copyright Reserved to <span class="text-color">Novena</span> by <a href="https://themefisher.com/" target="_blank">Themefisher</a>
+						&copy; Copyright Reserved to <span class="text-color">Tana Luwu Medical Center</span></a>
 					</div>
 				</div>
-				<div class="col-lg-6">
-					<div class="subscribe-form text-lg-right mt-5 mt-lg-0">
-						<form action="#" class="subscribe">
-							<input type="text" class="form-control" placeholder="Your Email address">
-							<a href="#" class="btn btn-main-2 btn-round-full">Subscribe</a>
-						</form>
-					</div>
-				</div>
+	
 			</div>
 
 			<div class="row">
@@ -287,7 +260,6 @@ if ($result->num_rows > 0) {
 		</div>
 	</div>
 </footer>
-   
 
     <!-- 
     Essential Scripts

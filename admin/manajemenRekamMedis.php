@@ -20,10 +20,11 @@ $medis= query("SELECT * FROM rekam_medis");
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>Corona Admin</title>
+    <title>Tana Luwu | Admin</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="assets/vendors/mdi/css/materialdesignicons.min.css" />
     <link rel="stylesheet" href="assets/vendors/css/vendor.bundle.base.css" />
+    <link rel="stylesheet" href="../styles/modal.css" />
     <!-- endinject -->
     <!-- Plugin css for this page -->
     <link rel="stylesheet" href="assets/vendors/jvectormap/jquery-jvectormap.css" />
@@ -145,13 +146,16 @@ $medis= query("SELECT * FROM rekam_medis");
             <div class="main-panel">
                 <div class="content-wrapper">
                     <div class="page-header">
-                        <h3 class="page-title"> Dokter </h3>
+                        <h3 class="page-title"> Rekam Medis </h3>
+                        <button class="btn btn-outline-primary btn-icon-text" id="myBtn">
+                                        Tambah Data
+                                    </button>
                     </div>
                     <div class="row">
                         <div class="col-lg-12 grid-margin stretch-card">
                             <div class="card">
                                 <div class="card-body">
-                                    <h4 class="card-title">Manajemen Dokter</h4>
+                                    <h4 class="card-title">Manajemen Rekam Medis</h4>
                                     <div class="table-responsive">
                                         <table class="table">
                                             <thead>
@@ -236,5 +240,34 @@ $medis= query("SELECT * FROM rekam_medis");
     <script src="assets/js/dashboard.js"></script>
     <!-- End custom js for this page -->
 </body>
-
+<!-- add modal -->
+<div id="myModal" class="modal">
+<!-- Modal content -->
+    <div class="modal-content">
+   
+        <div class="modal-header-center">
+            <span class="close">&times;</span>
+            <h2>Menambahkan data rekam medis</h2>
+        </div>
+        
+        <div class="modal-body">
+            <form class="modal-form-dokter" action="../function/tambah_medis.php" method="POST" enctype="multipart/form-data">
+                <input type="number" placeholder="ID rekam medis" name="id_rekam_medis" required>
+                <input type="number" placeholder="ID pasien" name="id_pasien" required>
+                <input type="number" placeholder="ID antrian" name="id_antrian" required>
+                <input type="text" placeholder="Diagnosa" name="diagnosa" required>
+                <input type="number" placeholder="ID dokter" name="id_dokter" required>
+                <input type="number" placeholder="Tekanan darah tinggi" name="tekanan_darah_tinggi" required>
+                <input type="number" placeholder="Berat badan" name="berat_badan" required>
+                <input type="number" placeholder="Tinggi badan" name="tinggi_badan" required>
+                <input type="number" placeholder="Suhu badan" name="suhu_badan" required>
+                <input type="text" placeholder="Obat" name="obat" required>
+                <input type="submit" value="simpan">
+            </form>
+        </div>
+    
+    </div>            
+</div>
+<!-- add modal -->
+<script src="../scripts/script.js"></script>
 </html>

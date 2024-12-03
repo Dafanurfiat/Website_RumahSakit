@@ -299,7 +299,7 @@ a.button {
   }
   
   .modal-form {
-    display: flex;
+    display: block;
     align-items: center;
     margin: 0;
   }

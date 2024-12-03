@@ -1,0 +1,82 @@
+.modal-form {
+  display: block;
+  align-items: center;
+  margin: 50;
+}
+
+.modal-form-dokter {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  flex-direction: column;
+}
+
+.modal-form-dokter input[type="text"],
+.modal-form-dokter input[type="number"],
+.modal-form-dokter input[type="file"],
+.modal-form-dokter textarea {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin: 10px 5px;
+  width: 100%;
+}
+
+.modal-form-dokter input[type="submit"] {
+  padding: 8px 18px;
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.modal-form input[type="number"] {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-right: 5px;
+}
+
+.modal-form input[type="text"] {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-right: 5px;
+}
+
+.modal-form input[type="time"] {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-right: 5px;
+}
+
+.modal-form input[type="file"] {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-right: 5px;
+}
+
+.modal-form textarea {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-right: 5px;
+}
+
+.modal-form input[type="submit"] {
+  padding: 8px 18px;
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.modal-form input[type="submit"]:hover {
+  background-color: #218838;
+}

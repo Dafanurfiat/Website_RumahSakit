@@ -20,7 +20,7 @@ $pasien = query("SELECT * FROM pasien");
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>Corona Admin</title>
+    <title>Tana Luwu | Admin</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="assets/vendors/mdi/css/materialdesignicons.min.css" />
     <link rel="stylesheet" href="assets/vendors/css/vendor.bundle.base.css" />
@@ -145,13 +145,13 @@ $pasien = query("SELECT * FROM pasien");
             <div class="main-panel">
                 <div class="content-wrapper">
                     <div class="page-header">
-                        <h3 class="page-title"> Dokter </h3>
+                        <h3 class="page-title"> Pasien </h3>
                     </div>
                     <div class="row">
                         <div class="col-lg-12 grid-margin stretch-card">
                             <div class="card">
                                 <div class="card-body">
-                                    <h4 class="card-title">Manajemen Dokter</h4>
+                                    <h4 class="card-title">Manajemen Pasien</h4>
                                     <div class="table-responsive">
                                         <table class="table">
                                             <thead>

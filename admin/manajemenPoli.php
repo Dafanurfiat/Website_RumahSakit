@@ -20,10 +20,11 @@ $poli = query("SELECT * FROM poli");
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>Corona Admin</title>
+    <title>Tana Luwu | Admin</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="assets/vendors/mdi/css/materialdesignicons.min.css" />
     <link rel="stylesheet" href="assets/vendors/css/vendor.bundle.base.css" />
+    <link rel="stylesheet" href="../styles/modal.css" />
     <!-- endinject -->
     <!-- Plugin css for this page -->
     <link rel="stylesheet" href="assets/vendors/jvectormap/jquery-jvectormap.css" />
@@ -146,6 +147,9 @@ $poli = query("SELECT * FROM poli");
                 <div class="content-wrapper">
                     <div class="page-header">
                         <h3 class="page-title"> Poli </h3>
+                        <button class="btn btn-outline-primary btn-icon-text" id="myBtn">
+                                        Tambah Data
+                                    </button>
                     </div>
                     <div class="row">
                         <div class="col-lg-12 grid-margin stretch-card">
@@ -227,5 +231,27 @@ $poli = query("SELECT * FROM poli");
     <script src="assets/js/dashboard.js"></script>
     <!-- End custom js for this page -->
 </body>
-
+<div id="myModal" class="modal">
+<!-- Modal content -->
+    <div class="modal-content">
+   
+        <div class="modal-header-center">
+            <span class="close">&times;</span>
+            <h2>Menambahkan data poli</h2>
+        </div>
+        
+        <div class="modal-body">
+            <form class="modal-form-dokter" action="../function/tambah_poli.php" method="POST" enctype="multipart/form-data">
+                <input type="text" placeholder="ID poli" name="poli_id" required>
+                <input type="text" placeholder="Nama poli" name="nama_poli" required>
+                <textarea placeholder="Deskripsi poli" name="deskripsi_poli" required></textarea>
+                <input type="file" name="image" required>
+                <input type="submit" value="simpan">
+            </form>
+        </div>
+    
+    </div>            
+</div>
+<!-- add modal -->
+<script src="../scripts/script.js"></script>
 </html>

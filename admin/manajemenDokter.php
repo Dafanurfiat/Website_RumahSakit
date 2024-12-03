@@ -24,6 +24,7 @@ $dokter = query("SELECT * FROM dokter");
     <!-- plugins:css -->
     <link rel="stylesheet" href="assets/vendors/mdi/css/materialdesignicons.min.css" />
     <link rel="stylesheet" href="assets/vendors/css/vendor.bundle.base.css" />
+    <link rel="stylesheet" href="../styles/modal.css" />
     <!-- endinject -->
     <!-- Plugin css for this page -->
     <link rel="stylesheet" href="assets/vendors/jvectormap/jquery-jvectormap.css" />
@@ -45,7 +46,7 @@ $dokter = query("SELECT * FROM dokter");
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
             <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
                 <a class="sidebar-brand brand-logo" href="dashboard.php" style="color: #c53f3f">
-                    <h1>Tana Luwu</h1>
+                    <h1>Tana Luwu | Admin</h1>
                 </a>
                 <a class="sidebar-brand brand-logo-mini" href="dashboard.php"><img src="../images/logo.png"
                         alt="logo" /></a>
@@ -146,6 +147,9 @@ $dokter = query("SELECT * FROM dokter");
                 <div class="content-wrapper">
                     <div class="page-header">
                         <h3 class="page-title"> Dokter </h3>
+                        <button class="btn btn-outline-primary btn-icon-text" id="myBtn">
+                                        Tambah Data
+                                    </button>
                     </div>
                     <div class="row">
                         <div class="col-lg-12 grid-margin stretch-card">
@@ -232,5 +236,30 @@ $dokter = query("SELECT * FROM dokter");
     <script src="assets/js/dashboard.js"></script>
     <!-- End custom js for this page -->
 </body>
-
+<!-- add modal -->
+<div id="myModal" class="modal">
+<!-- Modal content -->
+    <div class="modal-content">
+   
+        <div class="modal-header-center">
+            <span class="close">&times;</span>
+            <h2>Menambahkan data dokter</h2>
+        </div>
+        
+        <div class="modal-body">
+            <form class="modal-form-dokter" action="../function/tambah_dokter.php" method="POST" enctype="multipart/form-data">
+                <input type="number" placeholder="ID dokter" name="id_dokter" required>
+                <input type="number" placeholder="ID poli" name="id_poli" required>
+                <input type="text" placeholder="Nama dokter" name="nama_dokter" required>
+                <input type="number" placeholder="Nomor" name="no_wa" required>
+                <textarea placeholder="Deskripsi" name="deskripsi" required></textarea>
+                <input type="file" name="image" required>
+                <input type="submit" value="simpan">
+            </form>
+        </div>
+    
+    </div>            
+</div>
+<!-- add modal -->
+<script src="../scripts/script.js"></script>
 </html>

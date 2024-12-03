@@ -20,10 +20,11 @@ $berita = query("SELECT * FROM berita");
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>Corona Admin</title>
+    <title>Tana Luwu | Admin</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="assets/vendors/mdi/css/materialdesignicons.min.css" />
     <link rel="stylesheet" href="assets/vendors/css/vendor.bundle.base.css" />
+    <link rel="stylesheet" href="../styles/modal.css" />
     <!-- endinject -->
     <!-- Plugin css for this page -->
     <link rel="stylesheet" href="assets/vendors/jvectormap/jquery-jvectormap.css" />
@@ -145,13 +146,16 @@ $berita = query("SELECT * FROM berita");
             <div class="main-panel">
                 <div class="content-wrapper">
                     <div class="page-header">
-                        <h3 class="page-title"> Dashboard </h3>
+                        <h3 class="page-title"> Berita </h3>
+                        <button class="btn btn-outline-primary btn-icon-text" id="myBtn">
+                                        Tambah Data
+                                    </button>
                     </div>
                     <div class="row">
                         <div class="col-lg-12 grid-margin stretch-card">
                             <div class="card">
                                 <div class="card-body">
-                                    <h4 class="card-title">Dokter</h4>
+                                    <h4 class="card-title">Manajemen Berita</h4>
                                     <div class="table-responsive">
                                         <table class="table">
                                             <thead>
@@ -227,5 +231,30 @@ $berita = query("SELECT * FROM berita");
     <script src="assets/js/dashboard.js"></script>
     <!-- End custom js for this page -->
 </body>
+<!-- add modal -->
+<div id="myModal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>Menambahkan data berita</h2>
+        </div>
+
+        <div class="modal-body">
+            <form class="modal-form-dokter" action="../function/tambah_berita.php" method="POST" enctype="multipart/form-data">
+                <input type="number" placeholder="ID berita" name="berita_id" required>
+                <input type="text" placeholder="Judul berita" name="judul_berita" required>
+                <textarea placeholder="isi_berita" name="isi_berita" required></textarea>
+                <input type="date" placeholder="waktu_berita" name="waktu_berita" required>
+                <input type="file" name="gambar" required>
+                <input type="submit" value="simpan">
+            </form>
+        </div>
+
+    </div>
+</div>
+<!-- add modal -->
+<script src="../scripts/script.js"></script>
 
 </html>

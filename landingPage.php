@@ -8,6 +8,19 @@ if (!isset($_SESSION['id_pasien'])) {
 }
 $idPasien = $_SESSION['id_pasien'];
 
+// Query untuk mengambil data pasien (termasuk nama pasien)
+$queryPasien = "SELECT nama_pasien FROM pasien WHERE id_pasien = '$idPasien'";
+$resultPasien = mysqli_query($conn, $queryPasien);
+
+// Cek jika query pasien berhasil
+if (!$resultPasien) {
+    die("Error pada query pasien: " . mysqli_error($conn));
+}
+
+// Ambil data nama pasien
+$pasien = mysqli_fetch_assoc($resultPasien);
+$namaPasien = $pasien['nama_pasien'];
+
 $queryRekamMedis = "SELECT * FROM rekam_medis WHERE id_pasien = '$idPasien'";
 $result = mysqli_query($conn, $queryRekamMedis);
 
@@ -123,7 +136,7 @@ $beritaResult = mysqli_query($conn, "SELECT * FROM berita");
                         <div class="divider mb-3"></div>
                         <span class="text-uppercase text-sm letter-spacing ">Kesehatan Anda, Prioritas Kami di Jantung
                             Tana Luwu</span>
-                        <h1 class="mb-3 mt-3">Halo <?php echo $_SESSION['username'] ?>!</h1>
+                        <h1 class="mb-3 mt-3">Halo <?php echo $namaPasien; ?>!</h1>
 
                         <p class="mb-4 pr-5">Solusi kesehatan terpercaya di jantung Tana Luwu, memadukan keahlian modern
                             dengan pelayanan penuh kepedulian.</p>

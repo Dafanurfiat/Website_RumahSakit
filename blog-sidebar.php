@@ -142,7 +142,7 @@ $beritaResult = mysqli_query($conn, "SELECT * FROM berita");
                             </h2>
 
                             <p class="mb-4">
-                                <?php echo htmlspecialchars(substr($berita['isi_berita'], 0, 500)) . '...'; ?>
+                                <?php echo htmlspecialchars(substr($berita['isi_berita'], 0, 1000)) . '...'; ?>
                             </p>
                         </div>
                     </div>

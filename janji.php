@@ -212,7 +212,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 								<!-- Input Tanggal -->
 								<div class="col-lg-6">
 									<div class="form-group">
-										<input name="tanggal" id="date" type="text" class="form-control" placeholder="dd/mm/yyyy">
+										<input name="tanggal" id="date" type="date" class="form-control" placeholder="dd/mm/yyyy">
 									</div>
 								</div>
 

@@ -1,4 +1,5 @@
 <?php 
+include 'function/function.php';
 session_start();
 
 if (!isset($_SESSION['id_pasien'])) {

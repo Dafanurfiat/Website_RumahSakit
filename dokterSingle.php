@@ -1,6 +1,13 @@
 <?php 
 include "function/function.php";
 
+session_start();
+
+if (!isset($_SESSION['id_pasien'])) {
+    header('Location: index.php');
+    exit; // Jangan lanjutkan eksekusi setelah redirect
+}
+
 $id_dokter = isset($_GET['id_dokter']) ? intval($_GET['id_dokter']) : 0;
 
 // Query untuk mengambil data dokter dan jadwal
@@ -101,7 +108,7 @@ if ($result->num_rows > 0) {
 					<a class="nav-link dropdown-toggle" href="dokter.php" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Doctors <i class="icofont-thin-down"></i></a>
 					<ul class="dropdown-menu" aria-labelledby="dropdown03">
 						<li><a class="dropdown-item" href="dokter.php">Doctors</a></li>
-						<li><a class="dropdown-item" href="dokterSingle.php.html">Doctor Single</a></li>
+						<li><a class="dropdown-item" href="dokterSingle.php">Doctor Single</a></li>
 						<li><a class="dropdown-item" href="janji.php">Appoinment</a></li>
 					</ul>
 			  	</li>

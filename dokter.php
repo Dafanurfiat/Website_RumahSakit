@@ -1,5 +1,11 @@
 <?php 
 include 'function/function.php';
+session_start();
+
+if (!isset($_SESSION['id_pasien'])) {
+    header('Location: index.php');
+    exit; // Jangan lanjutkan eksekusi setelah redirect
+}
 
 $dokterResult = mysqli_query($conn, "SELECT * FROM dokter");
 $poliResult = mysqli_query($conn, "SELECT * FROM poli");

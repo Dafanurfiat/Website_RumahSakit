@@ -19,7 +19,6 @@ $rekamMedis = [];
 while ($row = mysqli_fetch_assoc($result)) {
     $rekamMedis[] = $row;
 }
-echo $queryRekamMedis;
 
 $beritaResult = mysqli_query($conn, "SELECT * FROM berita");
 ?>

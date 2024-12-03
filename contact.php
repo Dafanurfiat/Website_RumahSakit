@@ -29,7 +29,7 @@
   </head>
 
   <body id="top">
-	<header>
+  <header>
 		<div class="header-top-bar">
 			<div class="container">
 				<div class="row align-items-center">
@@ -77,8 +77,8 @@
 						</ul>
 					  </li>
 	
-					  <li class="nav-item"><a class="nav-link" href="blog-sidebar.html">blog</a></li>
-				   <li class="nav-item"><a class="nav-link" href="contact.html">Kontak</a></li>
+					  <li class="nav-item"><a class="nav-link" href="blog-sidebar.php">blog</a></li>
+				   <li class="nav-item"><a class="nav-link" href="contact.php">Kontak</a></li>
 				</ul>
 			  </div>
 			</div>
@@ -93,60 +93,49 @@
     <div class="row">
       <div class="col-md-12">
         <div class="block text-center">
-          <span class="text-white">Blog Kami</span>
-          <h1 class="text-capitalize mb-5 text-lg">Blog Artikel</h1>
+          <span class="text-white">Kontak Kami</span>
+          <h1 class="text-capitalize mb-5 text-lg">Hubungi Kami</h1>
 
           <!-- <ul class="list-inline breadcumb-nav">
             <li class="list-inline-item"><a href="landingPage.php" class="text-white">Home</a></li>
             <li class="list-inline-item"><span class="text-white">/</span></li>
-            <li class="list-inline-item"><a href="#" class="text-white-50">Our blog</a></li>
+            <li class="list-inline-item"><a href="#" class="text-white-50">Contact Us</a></li>
           </ul> -->
         </div>
       </div>
     </div>
   </div>
 </section>
+<!-- contact form start -->
 
-<section class="section blog-wrap">
+<section class="section contact-info pb-0" style="margin-bottom: 10%;">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-10">
-                <div class="row">
-
-	<div class="col-lg-12 col-md-12 mb-5">
-		<div class="blog-item">
-			<div class="blog-thumb">
-				<img src="images/blog/blog-1.jpg" alt="" class="img-fluid ">
-			</div>
-
-				<h2 class="mt-3 mb-3"><a href="blog-sidebar.html">Choose quality service over cheap service  all type of things</a></h2>
-
-				<p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis aliquid architecto facere commodi cupiditate omnis voluptatibus inventore atque velit cum rem id assumenda quam recusandae ipsam ea porro, dicta ad.</p>
-
-			</div>
-		</div>
-	</div>
-
-	<div class="col-lg-12 col-md-12 mb-5">
-		<div class="blog-item">
-			<div class="blog-thumb">
-				<img src="images/blog/blog-2.jpg" alt="" class="img-fluid ">
-			</div>
-
-				<h2 class="mt-3 mb-3"><a href="blog-sidebar.html">Choose quality service over cheap service  all type of things</a></h2>
-
-				<p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis aliquid architecto facere commodi cupiditate omnis voluptatibus inventore atque velit cum rem id assumenda quam recusandae ipsam ea porro, dicta ad.</p>
-
-			</div>
-		</div>
-	</div>
-</div>
-
-</div>
-            </div>   
+         <div class="row">
+            <div class="col-lg-4 col-sm-6 col-md-6">
+                <div class="contact-block mb-4 mb-lg-0">
+                    <i class="icofont-live-support"></i>
+                    <h5>Panngil kami</h5>
+                     +628958029292929
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6 col-md-6">
+                <div class="contact-block mb-4 mb-lg-0">
+                    <i class="icofont-support-faq"></i>
+                    <h5>Email Kami</h5>
+					Tanaluwumedical@gmail.com
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6 col-md-6">
+                <div class="contact-block mb-4 mb-lg-0">
+                    <i class="icofont-location-pin"></i>
+                    <h5>Alamat</h5>
+					Jalan .Paal-2 nomor 45
+                </div>
+            </div>
         </div>
     </div>
 </section>
+
 
 <!-- footer Start -->
 <footer class="footer section gray-bg">

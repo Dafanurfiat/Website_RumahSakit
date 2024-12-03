@@ -25,7 +25,7 @@
 
 <body id="top">
 
-	<header>
+<header>
 		<div class="header-top-bar">
 			<div class="container">
 				<div class="row align-items-center">
@@ -73,8 +73,8 @@
 						</ul>
 					  </li>
 	
-					  <li class="nav-item"><a class="nav-link" href="blog-sidebar.html">blog</a></li>
-				   <li class="nav-item"><a class="nav-link" href="contact.html">Kontak</a></li>
+					  <li class="nav-item"><a class="nav-link" href="blog-sidebar.php">blog</a></li>
+				   <li class="nav-item"><a class="nav-link" href="contact.php">Kontak</a></li>
 				</ul>
 			  </div>
 			</div>
@@ -169,7 +169,7 @@
 					<img src="images/team/1.jpg" alt="" class="img-fluid w-100">
 
 					<div class="content">
-						<h4 class="mt-4 mb-0"><a href="dokterSingle.php.html">Dr. Andi Kusuma, Sp.OG</a></h4>
+						<h4 class="mt-4 mb-0"><a href="dokterSingle.php">Dr. Andi Kusuma, Sp.OG</a></h4>
 						<p>Spesialis Kebidanan dan Kandungan</p>
 					</div>
 				</div>
@@ -180,7 +180,7 @@
 					<img src="images/team/2.jpg" alt="" class="img-fluid w-100">
 
 					<div class="content">
-						<h4 class="mt-4 mb-0"><a href="dokterSingle.php.html">Dr. Iwan Setiawan, Sp.PD</a></h4>
+						<h4 class="mt-4 mb-0"><a href="dokterSingle.php">Dr. Iwan Setiawan, Sp.PD</a></h4>
 						<p>Spesialis Penyakit Dalam</p>
 					</div>
 				</div>
@@ -191,7 +191,7 @@
 					<img src="images/team/3.jpg" alt="" class="img-fluid w-100">
 
 					<div class="content">
-						<h4 class="mt-4 mb-0"><a href="dokterSingle.php.html">Dr. Lita Pramesti, Sp.THT</a></h4>
+						<h4 class="mt-4 mb-0"><a href="dokterSingle.php">Dr. Lita Pramesti, Sp.THT</a></h4>
 						<p>Spesialis Telinga, Hidung, dan Tenggorokan</p>
 					</div>
 				</div>

@@ -33,8 +33,7 @@ if (!isset($_SESSION['id_pasien'])) {
 </head>
 
 <body id="top">
-
-	<header>
+<header>
 		<div class="header-top-bar">
 			<div class="container">
 				<div class="row align-items-center">
@@ -82,8 +81,8 @@ if (!isset($_SESSION['id_pasien'])) {
 						</ul>
 					  </li>
 	
-					  <li class="nav-item"><a class="nav-link" href="blog-sidebar.html">blog</a></li>
-				   <li class="nav-item"><a class="nav-link" href="contact.html">Kontak</a></li>
+					  <li class="nav-item"><a class="nav-link" href="blog-sidebar.php">blog</a></li>
+				   <li class="nav-item"><a class="nav-link" href="contact.php">Kontak</a></li>
 				</ul>
 			  </div>
 			</div>

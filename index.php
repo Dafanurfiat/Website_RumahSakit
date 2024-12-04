@@ -18,23 +18,18 @@ if (isset($_SESSION['login'])) {
 if (isset($_POST['login'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
-
     $errors = array();
-
     if (empty($username) || empty($password)) {
         array_push($errors, "Username dan password harus diisi!");
     }
-
     if (count($errors) == 0) {
         // Cek login di tabel admin
         $sqlAdmin = "SELECT * FROM admin WHERE username = ?";
         $stmtAdmin = mysqli_stmt_init($conn);
-
         if (mysqli_stmt_prepare($stmtAdmin, $sqlAdmin)) {
             mysqli_stmt_bind_param($stmtAdmin, "s", $username);
             mysqli_stmt_execute($stmtAdmin);
             $resultAdmin = mysqli_stmt_get_result($stmtAdmin);
-
             if ($admin = mysqli_fetch_assoc($resultAdmin)) {
                 if (password_verify($password, $admin['password'])) {
                     // Login sebagai admin
@@ -52,12 +47,10 @@ if (isset($_POST['login'])) {
         // Cek login di tabel pasien
         $sqlPasien = "SELECT * FROM pasien WHERE username = ?";
         $stmtPasien = mysqli_stmt_init($conn);
-
         if (mysqli_stmt_prepare($stmtPasien, $sqlPasien)) {
             mysqli_stmt_bind_param($stmtPasien, "s", $username);
             mysqli_stmt_execute($stmtPasien);
             $resultPasien = mysqli_stmt_get_result($stmtPasien);
-
             if ($pasien = mysqli_fetch_assoc($resultPasien)) {
                 if (password_verify($password, $pasien['password'])) {
                     // Login sebagai pasien
@@ -99,7 +92,6 @@ if (isset($_POST["submit"])) {
     $no_kontak_wali = $_POST["no_kontak_wali"];
     $password = trim($_POST["password"]);
     $passwordRepeat = $_POST["repeat_password"];
-    
     $errors = array();
 
     if (empty($nama_pasien) || empty($username) || empty($no_ktp) || empty($password) || empty($passwordRepeat)) {

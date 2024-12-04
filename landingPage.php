@@ -493,15 +493,11 @@ $beritaResult = mysqli_query($conn, "SELECT * FROM berita");
                             &copy; Copyright Reserved to <span class="text-color">Tana Luwu Medical Center</span></a>
                         </div>
                     </div>
-
                 </div>
-
                 <div class="row">
                     <div class="col-lg-4">
                         <a class="backtop js-scroll-trigger" href="#top">
                             <i class="icofont-long-arrow-up"></i>
-                        </a>
-                    </div>
                 </div>
             </div>
         </div>
@@ -510,7 +506,6 @@ $beritaResult = mysqli_query($conn, "SELECT * FROM berita");
     <!-- 
     Essential Scripts
     =====================================-->
-
 
     <!-- Main jQuery -->
     <script src="plugins/jquery/jquery.js"></script>
@@ -522,7 +517,6 @@ $beritaResult = mysqli_query($conn, "SELECT * FROM berita");
     <script src="plugins/slick-carousel/slick/slick.min.js"></script>
     <!-- Counterup -->
     <script src="plugins/counterup/jquery.waypoints.min.js"></script>
-
     <script src="plugins/shuffle/shuffle.min.js"></script>
     <script src="plugins/counterup/jquery.counterup.min.js"></script>
     <!-- Google Map -->

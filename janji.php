@@ -76,7 +76,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <!-- Slick Slider  CSS -->
     <link rel="stylesheet" href="plugins/slick-carousel/slick/slick.css" />
     <link rel="stylesheet" href="plugins/slick-carousel/slick/slick-theme.css" />
-
     <!-- Main Stylesheet -->
     <link rel="stylesheet" href="css/style.css" />
 </head>
@@ -133,7 +132,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 <li><a class="dropdown-item" href="janji.php">Membuat Janji</a></li>
                             </ul>
                         </li>
-
                         <li class="nav-item"><a class="nav-link" href="blog-sidebar.php">Berita</a></li>
                         <li class="nav-item"><a class="nav-link" href="contact.php">Kontak</a></li>
                         <li class="nav-item"><a class="nav-link" href="function\logout.php">Logout</a></li>
@@ -142,8 +140,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
         </nav>
     </header>
-
-
 
     <section class="page-title bg-1">
         <div class="overlay"></div>
@@ -202,7 +198,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                         </select>
                                     </div>
                                 </div>
-
                                 <!-- Pilihan Jadwal -->
                                 <div class="col-lg-6">
                                     <div class="form-group">
@@ -211,14 +206,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                         </select>
                                     </div>
                                 </div>
-
 								<!-- Input Tanggal -->
 								<div class="col-lg-6">
 									<div class="form-group">
 										<input name="tanggal" id="date" type="date" class="form-control" placeholder="dd/mm/yyyy">
 									</div>
 								</div>
-
                                 <!-- Tombol Submit -->
                                 <div class="col-lg-12">
                                     <button type="submit" name="submit" class="btn btn-main btn-round-full">Membuat
@@ -226,14 +219,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 </div>
                             </div>
                         </form>
-
                     </div>
                 </div>
             </div>
         </div>
         </div>
     </section>
-
 
     <!-- footer Start -->
     <footer class="footer section gray-bg">
@@ -255,7 +246,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <div class="widget mb-5 mb-lg-0">
                         <h4 class="text-capitalize mb-3">Poli</h4>
                         <div class="divider mb-4"></div>
-
                         <ul class="list-unstyled footer-menu lh-35">
                             <li><a href="poli.php">Penyakit Dalam </a></li>
                             <li><a href="poli.php">Kandungan dan anak</a></li>
@@ -270,7 +260,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <div class="widget widget-contact mb-5 mb-lg-0">
                         <h4 class="text-capitalize mb-3">Hubungi Kami</h4>
                         <div class="divider mb-4"></div>
-
                         <div class="footer-contact-block mb-4">
                             <div class="icon d-flex align-items-center">
                                 <i class="icofont-email mr-3"></i>
@@ -297,7 +286,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             &copy; Copyright Reserved to <span class="text-color">Tana Luwu Medical Center</span></a>
                         </div>
                     </div>
-
                 </div>
 
                 <div class="row">
@@ -338,7 +326,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     Essential Scripts
     =====================================-->
 
-
     <!-- Main jQuery -->
     <script src="plugins/jquery/jquery.js"></script>
     <!-- Bootstrap 4.3.2 -->
@@ -349,17 +336,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <script src="plugins/slick-carousel/slick/slick.min.js"></script>
     <!-- Counterup -->
     <script src="plugins/counterup/jquery.waypoints.min.js"></script>
-
     <script src="plugins/shuffle/shuffle.min.js"></script>
     <script src="plugins/counterup/jquery.counterup.min.js"></script>
     <!-- Google Map -->
     <script src="plugins/google-map/map.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkeLMlsiwzp6b3Gnaxd86lvakimwGA6UA&callback=initMap">
     </script>
-
     <script src="js/script.js"></script>
     <script src="js/contact.js"></script>
-
 </body>
-
 </html>

@@ -26,7 +26,6 @@ if (!isset($_SESSION['id_pasien'])) {
     <!-- Slick Slider  CSS -->
     <link rel="stylesheet" href="plugins/slick-carousel/slick/slick.css" />
     <link rel="stylesheet" href="plugins/slick-carousel/slick/slick-theme.css" />
-
     <!-- Main Stylesheet -->
     <link rel="stylesheet" href="css/style.css" />
 </head>
@@ -60,21 +59,17 @@ if (!isset($_SESSION['id_pasien'])) {
                 <a class="navbar-brand" href="landingPage.php">
                     <img src="images/logo.png" alt="" class="img-fluid">
                 </a>
-
                 <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarmain"
                     aria-controls="navbarmain" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="icofont-navigation-menu"></span>
                 </button>
-
                 <div class="collapse navbar-collapse" id="navbarmain">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item active">
                             <a class="nav-link" href="landingPage.php">Beranda</a>
                         </li>
                         <li class="nav-item"><a class="nav-link" href="tentang.php">Tentang Kami</a></li>
-
                         <li class="nav-item"><a class="nav-link" href="poli.php">Poli</a></li>
-
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="dokter.php" id="dropdown03" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">Dokter <i class="icofont-thin-down"></i></a>
@@ -83,7 +78,6 @@ if (!isset($_SESSION['id_pasien'])) {
                                 <li><a class="dropdown-item" href="janji.php">Membuat Janji</a></li>
                             </ul>
                         </li>
-
                         <li class="nav-item"><a class="nav-link" href="blog-sidebar.php">Berita</a></li>
                         <li class="nav-item"><a class="nav-link" href="contact.php">Kontak</a></li>
                         <li class="nav-item"><a class="nav-link" href="function\logout.php">Logout</a></li>
@@ -93,8 +87,6 @@ if (!isset($_SESSION['id_pasien'])) {
         </nav>
     </header>
 
-
-
     <section class="page-title bg-1">
         <div class="overlay"></div>
         <div class="container">
@@ -103,7 +95,6 @@ if (!isset($_SESSION['id_pasien'])) {
                     <div class="block text-center">
                         <span class="text-white">Tana Luwu Medical Center</span>
                         <h1 class="text-capitalize mb-5 text-lg">Hubungi Kami</h1>
-
                         <!-- <ul class="list-inline breadcumb-nav">
             <li class="list-inline-item"><a href="landingPage.php" class="text-white">Home</a></li>
             <li class="list-inline-item"><span class="text-white">/</span></li>
@@ -144,7 +135,6 @@ if (!isset($_SESSION['id_pasien'])) {
         </div>
     </section>
 
-
     <!-- footer Start -->
     <footer class="footer section gray-bg">
         <div class="container">
@@ -160,12 +150,10 @@ if (!isset($_SESSION['id_pasien'])) {
                             dan keselamatan pasien.</p>
                     </div>
                 </div>
-
                 <div class="col-lg-2 col-md-6 col-sm-6">
                     <div class="widget mb-5 mb-lg-0">
                         <h4 class="text-capitalize mb-3">Poli</h4>
                         <div class="divider mb-4"></div>
-
                         <ul class="list-unstyled footer-menu lh-35">
                             <li><a href="poli.php">Penyakit Dalam </a></li>
                             <li><a href="poli.php">Kandungan dan anak</a></li>
@@ -175,12 +163,10 @@ if (!isset($_SESSION['id_pasien'])) {
                         </ul>
                     </div>
                 </div>
-
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="widget widget-contact mb-5 mb-lg-0">
                         <h4 class="text-capitalize mb-3">Hubungi Kami</h4>
                         <div class="divider mb-4"></div>
-
                         <div class="footer-contact-block mb-4">
                             <div class="icon d-flex align-items-center">
                                 <i class="icofont-email mr-3"></i>
@@ -188,7 +174,6 @@ if (!isset($_SESSION['id_pasien'])) {
                             </div>
                             <h4 class="mt-2"><a href="tel:+6208958029292929">Tanaluwumedical@gmail.com</a></h4>
                         </div>
-
                         <div class="footer-contact-block">
                             <div class="icon d-flex align-items-center">
                                 <i class="icofont-support mr-3"></i>
@@ -199,7 +184,6 @@ if (!isset($_SESSION['id_pasien'])) {
                     </div>
                 </div>
             </div>
-
             <div class="footer-btm py-4 mt-5">
                 <div class="row align-items-center justify-content-between">
                     <div class="col-lg-6">
@@ -207,9 +191,7 @@ if (!isset($_SESSION['id_pasien'])) {
                             &copy; Copyright Reserved to <span class="text-color">Tana Luwu Medical Center</span></a>
                         </div>
                     </div>
-
                 </div>
-
                 <div class="row">
                     <div class="col-lg-4">
                         <a class="backtop js-scroll-trigger" href="#top">
@@ -221,12 +203,9 @@ if (!isset($_SESSION['id_pasien'])) {
         </div>
     </footer>
 
-
     <!-- 
     Essential Scripts
     =====================================-->
-
-
     <!-- Main jQuery -->
     <script src="plugins/jquery/jquery.js"></script>
     <!-- Bootstrap 4.3.2 -->
@@ -237,17 +216,13 @@ if (!isset($_SESSION['id_pasien'])) {
     <script src="plugins/slick-carousel/slick/slick.min.js"></script>
     <!-- Counterup -->
     <script src="plugins/counterup/jquery.waypoints.min.js"></script>
-
     <script src="plugins/shuffle/shuffle.min.js"></script>
     <script src="plugins/counterup/jquery.counterup.min.js"></script>
     <!-- Google Map -->
     <script src="plugins/google-map/map.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkeLMlsiwzp6b3Gnaxd86lvakimwGA6UA&callback=initMap">
     </script>
-
     <script src="js/script.js"></script>
     <script src="js/contact.js"></script>
-
 </body>
-
 </html>

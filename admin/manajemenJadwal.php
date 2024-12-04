@@ -11,7 +11,12 @@ $username = $_SESSION['username'];
 $query = "SELECT * FROM admin WHERE username = '$username'";
 $result = mysqli_query($conn, $query);
 
-$jadwal = query("SELECT * FROM jadwal_dokter");
+$queryJadwal = "
+SELECT j.id_jadwal_dokter, d.nama_dokter, j.hari, j.jam
+FROM jadwal_dokter j
+INNER JOIN dokter d ON j.id_dokter = d.id_dokter
+";
+$jadwal = query($queryJadwal);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -162,7 +167,7 @@ $jadwal = query("SELECT * FROM jadwal_dokter");
                                             <thead>
                                                 <tr>
                                                     <th>ID jadwal dokter</th>
-                                                    <th>ID dokter</th>
+                                                    <th>Nama Dokter</th>
                                                     <th>hari</th>
                                                     <th>jam</th>
                                                     <th>Aksi</th>
@@ -172,7 +177,7 @@ $jadwal = query("SELECT * FROM jadwal_dokter");
                                                 <?php foreach ($jadwal as $jadwal_row): ?>
                                                 <tr>
                                                     <td><?= $jadwal_row["id_jadwal_dokter"] ?></td>
-                                                    <td><?= $jadwal_row["id_dokter"] ?></td>
+                                                    <td><?= $jadwal_row["nama_dokter"] ?></td>
                                                     <td><?= $jadwal_row["hari"] ?></td>
                                                     <td><?= $jadwal_row["jam"] ?></td>
                                                     <td>
@@ -229,21 +234,40 @@ $jadwal = query("SELECT * FROM jadwal_dokter");
     <script src="assets/js/dashboard.js"></script>
     <!-- End custom js for this page -->
 </body>
-<!-- add modal -->
+<!-- Modal -->
 <div id="myModal" class="modal">
-  <!-- Modal content -->
+  <!-- Konten Modal -->
   <div class="modal-content">
     <div class="modal-header-center">
       <span class="close">&times;</span>
-      <h2>Menambahkan data Jadwal dokter</h2>
+      <h2>Menambahkan Data Jadwal Dokter</h2>
     </div>
     <div class="modal-body">
       <form class="modal-form-dokter" action="../function/tambah_jadwal.php" method="POST" enctype="multipart/form-data">
+        <!-- Input ID Jadwal Dokter -->
         <input type="number" placeholder="ID jadwal dokter" name="id_jadwal_dokter" required>
-        <input type="number" placeholder="ID dokter" name="id_dokter" required>
-        <input type="text" placeholder="hari" name="hari" required>
-        <input type="text" placeholder="jam" name="jam">
-        <input type="submit" value="simpan">
+        
+        <!-- Dropdown untuk Dokter -->
+        <select name="id_dokter" required>
+          <option value="">Pilih Dokter</option>
+          <?php
+          $queryDokter = "SELECT id_dokter, nama_dokter FROM dokter";
+          $resultDokter = mysqli_query($conn, $queryDokter);
+
+          while ($dokter = mysqli_fetch_assoc($resultDokter)) {
+              echo "<option value='{$dokter['id_dokter']}'>{$dokter['nama_dokter']}</option>";
+          }
+          ?>
+        </select>
+        
+        <!-- Input Hari -->
+        <input type="text" placeholder="Hari (contoh: Senin)" name="hari" required>
+        
+        <!-- Input Jam -->
+        <input type="text" placeholder="Jam (contoh: 09:00 - 17:00)" name="jam">
+        
+        <!-- Tombol Submit -->
+        <input type="submit" value="Simpan">
       </form>
     </div>
   </div>

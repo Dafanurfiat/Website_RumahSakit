@@ -4,56 +4,76 @@ include 'function/function.php';
 session_start();
 
 if (!isset($_SESSION['id_pasien'])) {
-	die("Anda harus login untuk membuat janji.");
+    die("Anda harus login untuk membuat janji.");
 }
 $idPasien = $_SESSION['id_pasien'];
+
 $jadwalQuery = "SELECT jd.id_jadwal_dokter, jd.hari, jd.jam, d.nama_dokter, d.id_dokter
                 FROM jadwal_dokter jd 
                 INNER JOIN dokter d ON jd.id_dokter = d.id_dokter";
 $jadwalResult = $conn->query($jadwalQuery);
 
 if (!$jadwalResult) {
-	die("Error pada query jadwal dokter: " . $conn->error);
+    die("Error pada query jadwal dokter: " . $conn->error);
 }
 
 $jadwalDokter = [];
 if ($jadwalResult->num_rows > 0) {
-	while ($row = $jadwalResult->fetch_assoc()) {
-		$jadwalDokter[$row['id_dokter']][] = $row;
-	}
+    while ($row = $jadwalResult->fetch_assoc()) {
+        $jadwalDokter[$row['id_dokter']][] = $row;
+    }
 }
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-	if (isset($_POST['submit'])) {
-		// Pastikan data form diterima
-		if (!isset($_POST['id_jadwal_dokter']) || !isset($_POST['tanggal'])) {
-			die('Data jadwal dokter atau tanggal belum diisi!');
-		}
+    if (isset($_POST['submit'])) {
+        // Pastikan data form diterima
+        if (!isset($_POST['id_jadwal_dokter']) || !isset($_POST['tanggal'])) {
+            die('Data jadwal dokter atau tanggal belum diisi!');
+        }
 
-		// Sanitasi data input
-		$idJadwalDokter = $conn->real_escape_string($_POST['id_jadwal_dokter']);
-		$tanggal = $conn->real_escape_string($_POST['tanggal']);
+        // Sanitasi data input
+        $idJadwalDokter = $conn->real_escape_string($_POST['id_jadwal_dokter']);
+        $tanggal = $conn->real_escape_string($_POST['tanggal']);
 
-		// Hitung nomor antrian
-		$queryAntrian = "SELECT MAX(no_antrian) AS max_antrian 
-                     FROM antrian 
-                     WHERE id_jadwal_dokter = '$idJadwalDokter' AND tanggal = '$tanggal'";
-		$resultAntrian = $conn->query($queryAntrian);
-		if (!$resultAntrian) {
-			die("Error pada query antrian: " . $conn->error);
-		}
+        // Hitung jumlah janji pada hari tersebut
+        $queryCount = "SELECT COUNT(*) AS total_antrian 
+                       FROM antrian 
+                       WHERE id_jadwal_dokter = '$idJadwalDokter' AND tanggal = '$tanggal'";
+        $resultCount = $conn->query($queryCount);
 
-		$maxAntrian = $resultAntrian->fetch_assoc()['max_antrian'] ?? 0;
-		$noAntrian = $maxAntrian + 1;
+        if (!$resultCount) {
+            die("Error pada query jumlah antrian: " . $conn->error);
+        }
 
-		// Simpan data janji
-		$insertQuery = "INSERT INTO antrian (id_pasien, id_jadwal_dokter, tanggal, no_antrian) 
-                    VALUES ('$idPasien', '$idJadwalDokter', '$tanggal', $noAntrian)";
-		if ($conn->query($insertQuery)) {
-			$message = "<div class='alert alert-success' role='alert'> Janji berhasil dibuat! Nomor antrian Anda: $noAntrian </div>";
-		} else {
-			$message = "<div class='alert alert-danger' role='alert'> Gagal membuat janji: " . $conn->error . "</div>";
-		}
-	}
+        $totalAntrian = $resultCount->fetch_assoc()['total_antrian'];
+
+        // Periksa apakah sudah mencapai batas
+        if ($totalAntrian >= 10) {
+            $message = "<div class='alert alert-warning' role='alert'> Kuota janji untuk hari ini sudah penuh! Silakan pilih hari lain. </div>";
+        } else {
+            // Hitung nomor antrian
+            $queryAntrian = "SELECT MAX(no_antrian) AS max_antrian 
+                             FROM antrian 
+                             WHERE id_jadwal_dokter = '$idJadwalDokter' AND tanggal = '$tanggal'";
+            $resultAntrian = $conn->query($queryAntrian);
+
+            if (!$resultAntrian) {
+                die("Error pada query antrian: " . $conn->error);
+            }
+
+            $maxAntrian = $resultAntrian->fetch_assoc()['max_antrian'] ?? 0;
+            $noAntrian = $maxAntrian + 1;
+
+            // Simpan data janji
+            $insertQuery = "INSERT INTO antrian (id_pasien, id_jadwal_dokter, tanggal, no_antrian) 
+                            VALUES ('$idPasien', '$idJadwalDokter', '$tanggal', $noAntrian)";
+            if ($conn->query($insertQuery)) {
+                $message = "<div class='alert alert-success' role='alert'> Janji berhasil dibuat! Nomor antrian Anda: $noAntrian </div>";
+            } else {
+                $message = "<div class='alert alert-danger' role='alert'> Gagal membuat janji: " . $conn->error . "</div>";
+            }
+        }
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -178,7 +198,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <div class="appoinment-wrap mt-5 mt-lg-0 pl-lg-5">
                         <h2 class="mb-2 title-color">Buat Janji dengan Dokter</h2>
                         <?php if (isset($message)): ?>
-                        <?= $message ?>
+                            <?= $message ?>
                         <?php endif; ?>
                         <form id="appoinment-form" class="appoinment-form" method="POST" action="janji.php">
                             <div class="row">
@@ -189,29 +209,29 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                             onchange="updateJadwal()">
                                             <option value="">Pilih Dokter</option>
                                             <?php
-											$dokterQuery = "SELECT id_dokter, nama_dokter FROM dokter";
-											$dokterResult = $conn->query($dokterQuery);
-											while ($dokter = $dokterResult->fetch_assoc()) {
-												echo "<option value='{$dokter['id_dokter']}'>{$dokter['nama_dokter']}</option>";
-											}
-											?>
+                                            $dokterQuery = "SELECT id_dokter, nama_dokter FROM dokter";
+                                            $dokterResult = $conn->query($dokterQuery);
+                                            while ($dokter = $dokterResult->fetch_assoc()) {
+                                                echo "<option value='{$dokter['id_dokter']}'>{$dokter['nama_dokter']}</option>";
+                                            }
+                                            ?>
                                         </select>
                                     </div>
                                 </div>
                                 <!-- Pilihan Jadwal -->
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <select class="form-control" id="jadwal-select" name="id_jadwal_dokter">
+                                        <select class="form-control" id="jadwal-select" name="id_jadwal_dokter" onchange="updateTanggal()">
                                             <option value="">Pilih Jadwal Dokter</option>
                                         </select>
                                     </div>
                                 </div>
-								<!-- Input Tanggal -->
-								<div class="col-lg-6">
-									<div class="form-group">
-										<input name="tanggal" id="date" type="date" class="form-control" placeholder="dd/mm/yyyy">
-									</div>
-								</div>
+                                <!-- Input Tanggal -->
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <input name="tanggal" id="date" type="date" class="form-control" placeholder="dd/mm/yyyy" disabled>
+                                    </div>
+                                </div>
                                 <!-- Tombol Submit -->
                                 <div class="col-lg-12">
                                     <button type="submit" name="submit" class="btn btn-main btn-round-full">Membuat
@@ -299,28 +319,62 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
     </footer>
     <script>
-    // Data jadwal dokter dalam format JSON (dari PHP)
-    const jadwalDokter = <?= json_encode($jadwalDokter) ?>;
+        // Data jadwal dokter dalam format JSON (dari PHP)
+        const jadwalDokter = <?= json_encode($jadwalDokter) ?>;
 
-    // Update pilihan jadwal dokter berdasarkan dokter yang dipilih
-    function updateJadwal() {
-        const dokterSelect = document.getElementById('dokter-select');
-        const jadwalSelect = document.getElementById('jadwal-select');
-        const selectedDokter = dokterSelect.value;
+        // Update pilihan jadwal dokter berdasarkan dokter yang dipilih
+        function updateJadwal() {
+            const dokterSelect = document.getElementById('dokter-select');
+            const jadwalSelect = document.getElementById('jadwal-select');
+            const dateInput = document.getElementById('date');
+            const selectedDokter = dokterSelect.value;
 
-        // Hapus semua opsi jadwal sebelumnya
-        jadwalSelect.innerHTML = '<option value="">Pilih Jadwal Dokter</option>';
+            // Reset pilihan jadwal dan tanggal
+            jadwalSelect.innerHTML = '<option value="">Pilih Jadwal Dokter</option>';
+            dateInput.value = '';
+            dateInput.disabled = true;
 
-        // Jika ada dokter yang dipilih, tambahkan jadwalnya
-        if (selectedDokter && jadwalDokter[selectedDokter]) {
-            jadwalDokter[selectedDokter].forEach(jadwal => {
-                const option = document.createElement('option');
-                option.value = jadwal.id_jadwal_dokter;
-                option.textContent = `${jadwal.hari}, ${jadwal.jam}`;
-                jadwalSelect.appendChild(option);
+            // Jika ada dokter yang dipilih, tambahkan jadwalnya
+            if (selectedDokter && jadwalDokter[selectedDokter]) {
+                jadwalDokter[selectedDokter].forEach(jadwal => {
+                    const option = document.createElement('option');
+                    option.value = jadwal.id_jadwal_dokter;
+                    option.dataset.hari = jadwal.hari; // Simpan hari di atribut data
+                    option.textContent = `${jadwal.hari}, ${jadwal.jam}`;
+                    jadwalSelect.appendChild(option);
+                });
+            }
+        }
+
+        // Update tanggal yang dapat dipilih berdasarkan jadwal yang dipilih
+        function updateTanggal() {
+            const jadwalSelect = document.getElementById('jadwal-select');
+            const dateInput = document.getElementById('date');
+            const selectedOption = jadwalSelect.options[jadwalSelect.selectedIndex];
+            const hariDipilih = selectedOption ? selectedOption.dataset.hari : null;
+
+            // Reset tanggal jika tidak ada jadwal yang dipilih
+            if (!hariDipilih) {
+                dateInput.value = '';
+                dateInput.disabled = true;
+                return;
+            }
+
+            // Aktifkan input tanggal
+            dateInput.disabled = false;
+
+            // Filter tanggal yang sesuai dengan hari yang dipilih
+            dateInput.addEventListener('input', function() {
+                const selectedDate = new Date(this.value);
+                const daysOfWeek = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+                const selectedDay = daysOfWeek[selectedDate.getDay()];
+
+                if (selectedDay !== hariDipilih) {
+                    this.value = ''; // Kosongkan jika hari tidak cocok
+                    alert(`Tanggal yang dipilih harus sesuai dengan hari ${hariDipilih}`);
+                }
             });
         }
-    }
     </script>
     <!-- 
     Essential Scripts
@@ -345,4 +399,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <script src="js/script.js"></script>
     <script src="js/contact.js"></script>
 </body>
+
 </html>

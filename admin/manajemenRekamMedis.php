@@ -1,17 +1,47 @@
-<?php 
+<?php
 require '../function/function.php';
 
 session_start();
 
 if (!isset($_SESSION['login'])) {
-  header("Location: ../index.php");
+    header("Location: ../index.php");
 }
 
 $username = $_SESSION['username'];
 $query = "SELECT * FROM admin WHERE username = '$username'";
 $result = mysqli_query($conn, $query);
 
-$medis= query("SELECT * FROM rekam_medis");
+$queryMedis = "
+SELECT r.id_rekam_medis, p.nama_pasien, a.tanggal, r.diagnosa, d.nama_dokter, r.tekanan_darah_tinggi, r.berat_badan, r.tinggi_badan, r.suhu_badan, r.obat
+FROM rekam_medis r
+INNER JOIN dokter d ON r.id_dokter = d.id_dokter
+INNER JOIN antrian a on r.id_antrian = a.id_antrian
+INNER JOIN pasien p on r.id_pasien = p.id_pasien 
+";
+$medis = query($queryMedis);
+
+$queryPasien = "SELECT id_pasien, nama_pasien FROM pasien";
+$resultPasien = mysqli_query($conn, $queryPasien);
+$pasienList = [];
+while ($pasien = mysqli_fetch_assoc($resultPasien)) {
+    $pasienList[] = $pasien;
+}
+
+// Ambil data dokter untuk dropdown
+$queryDokter = "SELECT id_dokter, nama_dokter FROM dokter";
+$resultDokter = mysqli_query($conn, $queryDokter);
+$dokterList = [];
+while ($dokter = mysqli_fetch_assoc($resultDokter)) {
+    $dokterList[] = $dokter;
+}
+
+// Ambil data antrian untuk dropdown
+$queryAntrian = "SELECT id_antrian, tanggal FROM antrian";
+$resultAntrian = mysqli_query($conn, $queryAntrian);
+$antrianList = [];
+while ($antrian = mysqli_fetch_assoc($resultAntrian)) {
+    $antrianList[] = $antrian;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -149,8 +179,8 @@ $medis= query("SELECT * FROM rekam_medis");
                     <div class="page-header">
                         <h3 class="page-title"> Rekam Medis </h3>
                         <button class="btn btn-outline-primary btn-icon-text" id="myBtn">
-                                        Tambah Data
-                                    </button>
+                            Tambah Data
+                        </button>
                     </div>
                     <div class="row">
                         <div class="col-lg-12 grid-margin stretch-card">
@@ -162,10 +192,10 @@ $medis= query("SELECT * FROM rekam_medis");
                                             <thead>
                                                 <tr>
                                                     <th>ID rekam medis</th>
-                                                    <th>ID pasien</th>
-                                                    <th>ID antrian</th>
+                                                    <th>Nama pasien</th>
+                                                    <th>Tanggal antrian</th>
                                                     <th>diagnosa</th>
-                                                    <th>ID dokter</th>
+                                                    <th>Nama dokter</th>
                                                     <th>Tekanan darah tinggi</th>
                                                     <th>Berat badan</th>
                                                     <th>Tinggi badan</th>
@@ -175,29 +205,29 @@ $medis= query("SELECT * FROM rekam_medis");
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <?php foreach ( $medis as $medis_row ): ?>
-                                                <tr>
-                                                    <td><?= $medis_row["id_rekam_medis"]; ?></td>
-                                                    <td><?= $medis_row["id_pasien"]; ?></td>
-                                                    <td><?= $medis_row["id_antrian"]; ?></td>
-                                                    <td><?= $medis_row["diagnosa"]; ?></td>
-                                                    <td><?= $medis_row["id_dokter"]; ?></td>
-                                                    <td><?= $medis_row["tekanan_darah_tinggi"]; ?></td>
-                                                    <td><?= $medis_row["berat_badan"]; ?></td>
-                                                    <td><?= $medis_row["tinggi_badan"]; ?></td>
-                                                    <td><?= $medis_row["suhu_badan"]; ?></td>
-                                                    <td><?= $medis_row["obat"]; ?></td>
-                                                    <td>
-                                                        <button type="button"
-                                                            class="btn btn-outline-primary btn-icon-text">
-                                                            <a href="../function/edit_medis.php?id_rekam_medis=<?= $medis_row["id_rekam_medis"] ?>"
-                                                                class="edit">Edit</a></button> ||
-                                                        <button type="button"
-                                                            class="btn btn-outline-danger btn-icon-text">
-                                                            <a href="../function/hapus_medis.php?id_rekam_medis=<?= $medis_row["id_rekam_medis"] ?>"
-                                                                class="hapus">Hapus</a></button>
-                                                    </td>
-                                                </tr>
+                                                <?php foreach ($medis as $medis_row): ?>
+                                                    <tr>
+                                                        <td><?= $medis_row["id_rekam_medis"]; ?></td>
+                                                        <td><?= $medis_row["nama_pasien"]; ?></td>
+                                                        <td><?= $medis_row["tanggal"]; ?></td>
+                                                        <td><?= $medis_row["diagnosa"]; ?></td>
+                                                        <td><?= $medis_row["nama_dokter"]; ?></td>
+                                                        <td><?= $medis_row["tekanan_darah_tinggi"]; ?></td>
+                                                        <td><?= $medis_row["berat_badan"]; ?></td>
+                                                        <td><?= $medis_row["tinggi_badan"]; ?></td>
+                                                        <td><?= $medis_row["suhu_badan"]; ?></td>
+                                                        <td><?= $medis_row["obat"]; ?></td>
+                                                        <td>
+                                                            <button type="button"
+                                                                class="btn btn-outline-primary btn-icon-text">
+                                                                <a href="../function/edit_medis.php?id_rekam_medis=<?= $medis_row["id_rekam_medis"] ?>"
+                                                                    class="edit">Edit</a></button> ||
+                                                            <button type="button"
+                                                                class="btn btn-outline-danger btn-icon-text">
+                                                                <a href="../function/hapus_medis.php?id_rekam_medis=<?= $medis_row["id_rekam_medis"] ?>"
+                                                                    class="hapus">Hapus</a></button>
+                                                        </td>
+                                                    </tr>
                                                 <?php endforeach; ?>
                                             </tbody>
                                         </table>
@@ -243,21 +273,36 @@ $medis= query("SELECT * FROM rekam_medis");
 </body>
 <!-- add modal -->
 <div id="myModal" class="modal">
-<!-- Modal content -->
+    <!-- Modal content -->
     <div class="modal-content">
-   
+
         <div class="modal-header-center">
             <span class="close">&times;</span>
             <h2>Menambahkan data rekam medis</h2>
         </div>
-        
+
         <div class="modal-body">
             <form class="modal-form-dokter" action="../function/tambah_medis.php" method="POST" enctype="multipart/form-data">
                 <input type="number" placeholder="ID rekam medis" name="id_rekam_medis" required>
-                <input type="number" placeholder="ID pasien" name="id_pasien" required>
-                <input type="number" placeholder="ID antrian" name="id_antrian" required>
+                <select id="id_pasien" name="id_pasien" required>
+                    <option value="">Pilih Pasien</option>
+                    <?php foreach ($pasienList as $pasien): ?>
+                        <option value="<?= $pasien['id_pasien']; ?>"><?= $pasien['nama_pasien']; ?></option>
+                    <?php endforeach; ?>
+                </select>
+                <select id="id_antrian" name="id_antrian" required>
+                    <option value="">Pilih Tanggal Antrian</option>
+                    <?php foreach ($antrianList as $antrian): ?>
+                        <option value="<?= $antrian['id_antrian']; ?>"><?= $antrian['tanggal']; ?></option>
+                    <?php endforeach; ?>
+                </select>
                 <input type="text" placeholder="Diagnosa" name="diagnosa" required>
-                <input type="number" placeholder="ID dokter" name="id_dokter" required>
+                <select id="id_dokter" name="id_dokter" required>
+                    <option value="">Pilih Dokter</option>
+                    <?php foreach ($dokterList as $dokter): ?>
+                        <option value="<?= $dokter['id_dokter']; ?>"><?= $dokter['nama_dokter']; ?></option>
+                    <?php endforeach; ?>
+                </select>
                 <input type="number" placeholder="Tekanan darah tinggi" name="tekanan_darah_tinggi" required>
                 <input type="number" placeholder="Berat badan" name="berat_badan" required>
                 <input type="number" placeholder="Tinggi badan" name="tinggi_badan" required>
@@ -266,9 +311,10 @@ $medis= query("SELECT * FROM rekam_medis");
                 <input type="submit" value="simpan">
             </form>
         </div>
-    
-    </div>            
+
+    </div>
 </div>
 <!-- add modal -->
 <script src="../scripts/script.js"></script>
+
 </html>

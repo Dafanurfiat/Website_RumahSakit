@@ -1,17 +1,22 @@
-<?php 
+<?php
 require '../function/function.php';
 
 session_start();
 
 if (!isset($_SESSION['login'])) {
-  header("Location: ../index.php");
+    header("Location: ../index.php");
 }
 
 $username = $_SESSION['username'];
-$query = "SELECT * FROM admin WHERE username = '$username'";
-$result = mysqli_query($conn, $query);
-
-$antrian = query("SELECT * FROM antrian");
+$queryAntrian = "
+SELECT a.id_antrian, a.tanggal, a.no_antrian,
+       p.nama_pasien, 
+       jd.hari 
+FROM antrian a
+INNER JOIN pasien p ON a.id_pasien = p.id_pasien
+INNER JOIN jadwal_dokter jd ON a.id_jadwal_dokter = jd.id_jadwal_dokter
+";
+$antrian = query($queryAntrian);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -158,45 +163,30 @@ $antrian = query("SELECT * FROM antrian");
                                             <thead>
                                                 <tr>
                                                     <th>ID antrian</th>
-                                                    <th>ID pasien</th>
-                                                    <th>ID Jadwal Dokter</th>
+                                                    <th>Nama pasien</th>
+                                                    <th>Hari</th>
                                                     <th>Tanggal</th>
                                                     <th>Nomor antrian</th>
-                                                    <th>Status</th>
-                                                    <th>Tolak/Terima</th>
                                                     <th>Aksi</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 </tr>
                                                 <?php foreach ($antrian as $antrian_row): ?>
-                                                <tr>
-                                                    <td><?= $antrian_row["id_antrian"] ?></td>
-                                                    <td><?= $antrian_row["id_pasien"] ?></td>
-                                                    <td><?= $antrian_row["id_jadwal_dokter"] ?></td>
-                                                    <td><?= $antrian_row["tanggal"] ?></td>
-                                                    <td><?= $antrian_row["no_antrian"] ?></td>
-                                                    <td><?= $antrian_row["status"] ?></td>
-                                                    <td>
-                                                        <button type="button"
-                                                            class="btn btn-outline-success btn-icon-text">
-                                                            <a href="../function/status.php?id_antrian=<?= $antrian_row["id_antrian"] ?>&status=diterima"
-                                                                class="edit">Diterima</a>
-                                                        </button>
-                                                        ||
-                                                        <button type="button"
-                                                            class="btn btn-outline-warning btn-icon-text">
-                                                            <a href="../function/status.php?id_antrian=<?= $antrian_row["id_antrian"] ?>&status=ditolak"
-                                                                class="hapus">Tolak</a>
-                                                        </button>
-                                                    <td>
-                                                        <button type="button"
-                                                            class="btn btn-outline-danger btn-icon-text">
-                                                            <a href="../function/hapus_antrian.php?id_antrian=<?= $antrian_row["id_antrian"] ?>"
-                                                                class="hapus">Hapus</a>
-                                                        </button>
-                                                    </td>
-                                                </tr>
+                                                    <tr>
+                                                        <td><?= $antrian_row["id_antrian"] ?></td>
+                                                        <td><?= $antrian_row["nama_pasien"] ?></td>
+                                                        <td><?= $antrian_row["hari"] ?></td>
+                                                        <td><?= $antrian_row["tanggal"] ?></td>
+                                                        <td><?= $antrian_row["no_antrian"] ?></td>
+                                                        <td>
+                                                            <button type="button"
+                                                                class="btn btn-outline-danger btn-icon-text">
+                                                                <a href="../function/hapus_antrian.php?id_antrian=<?= $antrian_row["id_antrian"] ?>"
+                                                                    class="hapus">Hapus</a>
+                                                            </button>
+                                                        </td>
+                                                    </tr>
                                                 <?php endforeach; ?>
                                             </tbody>
                                         </table>

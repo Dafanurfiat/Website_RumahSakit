@@ -67,20 +67,16 @@ $beritaResult = mysqli_query($conn, "SELECT * FROM berita");
 				  <a class="navbar-brand" href="landingPage.php">
 					  <img src="images/logo.png" alt="" class="img-fluid">
 				  </a>
-	
 				  <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarmain" aria-controls="navbarmain" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="icofont-navigation-menu"></span>
 			  </button>
-		  
 			  <div class="collapse navbar-collapse" id="navbarmain">
 				<ul class="navbar-nav ml-auto">
 				  <li class="nav-item active">
 					<a class="nav-link" href="landingPage.php">Beranda</a>
 				  </li>
 				   <li class="nav-item"><a class="nav-link" href="tentang.php">Tentang Kami</a></li>
-	
 					<li class="nav-item"><a class="nav-link" href="poli.php">Poli</a></li>
-	
 					  <li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="dokter.php" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dokter <i class="icofont-thin-down"></i></a>
 						<ul class="dropdown-menu" aria-labelledby="dropdown03">
@@ -88,7 +84,6 @@ $beritaResult = mysqli_query($conn, "SELECT * FROM berita");
 							<li><a class="dropdown-item" href="janji.php">Membuat Janji</a></li>
 						</ul>
 					  </li>
-	
 					  <li class="nav-item"><a class="nav-link" href="blog-sidebar.php">Berita</a></li>
 				   <li class="nav-item"><a class="nav-link" href="contact.php">Kontak</a></li>
 				   <li class="nav-item"><a class="nav-link" href="function\logout.php">Logout</a></li>
@@ -98,8 +93,6 @@ $beritaResult = mysqli_query($conn, "SELECT * FROM berita");
 		</nav>
 	</header>
 	
-
-
 <section class="page-title bg-1">
   <div class="overlay"></div>
   <div class="container">
@@ -134,13 +127,11 @@ $beritaResult = mysqli_query($conn, "SELECT * FROM berita");
                             <div class="blog-thumb">
                                 <img src="images/berita/<?php echo htmlspecialchars($berita['gambar']); ?>" alt="" class="img-fluid">
                             </div>
-
                             <h2 class="mt-3 mb-3">
                                 <a href="blog-sidebar.php?id=<?php echo $berita['id_berita']; ?>">
                                     <?php echo htmlspecialchars($berita['judul_berita']); ?>
                                 </a>
                             </h2>
-
                             <p class="mb-4">
                                 <?php echo htmlspecialchars(substr($berita['isi_berita'], 0, 1000)) . '...'; ?>
                             </p>
@@ -166,12 +157,10 @@ $beritaResult = mysqli_query($conn, "SELECT * FROM berita");
 						Tana Luwu Medical Center di Liwas, Manado, Sulawesi Utara, menyediakan layanan kesehatan berkualitas dengan fasilitas modern dan tenaga medis profesional, berfokus pada kenyamanan dan keselamatan pasien.</p>
 				</div>
 			</div>
-
 			<div class="col-lg-2 col-md-6 col-sm-6">
 				<div class="widget mb-5 mb-lg-0">
 					<h4 class="text-capitalize mb-3">Poli</h4>
 					<div class="divider mb-4"></div>
-
 					<ul class="list-unstyled footer-menu lh-35">
 						<li><a href="poli.php">Penyakit Dalam </a></li>
 						<li><a href="poli.php">Kandungan dan anak</a></li>
@@ -186,7 +175,6 @@ $beritaResult = mysqli_query($conn, "SELECT * FROM berita");
 				<div class="widget widget-contact mb-5 mb-lg-0">
 					<h4 class="text-capitalize mb-3">Hubungi Kami</h4>
 					<div class="divider mb-4"></div>
-
 					<div class="footer-contact-block mb-4">
 						<div class="icon d-flex align-items-center">
 							<i class="icofont-email mr-3"></i>
@@ -194,7 +182,6 @@ $beritaResult = mysqli_query($conn, "SELECT * FROM berita");
 						</div>
 						<h4 class="mt-2"><a href="tel:+6208958029292929">Tanaluwumedical@gmail.com</a></h4>
 					</div>
-
 					<div class="footer-contact-block">
 						<div class="icon d-flex align-items-center">
 							<i class="icofont-support mr-3"></i>
@@ -205,7 +192,6 @@ $beritaResult = mysqli_query($conn, "SELECT * FROM berita");
 				</div>
 			</div>
 		</div>
-		
 		<div class="footer-btm py-4 mt-5">
 			<div class="row align-items-center justify-content-between">
 				<div class="col-lg-6">
@@ -213,9 +199,7 @@ $beritaResult = mysqli_query($conn, "SELECT * FROM berita");
 						&copy; Copyright Reserved to <span class="text-color">Tana Luwu Medical Center</span></a>
 					</div>
 				</div>
-	
 			</div>
-
 			<div class="row">
 				<div class="col-lg-4">
 					<a class="backtop js-scroll-trigger" href="#top">
@@ -249,9 +233,7 @@ $beritaResult = mysqli_query($conn, "SELECT * FROM berita");
     <!-- Google Map -->
     <script src="plugins/google-map/map.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkeLMlsiwzp6b3Gnaxd86lvakimwGA6UA&callback=initMap"></script>    
-    
     <script src="js/script.js"></script>
     <script src="js/contact.js"></script>
-
   </body>
   </html>

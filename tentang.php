@@ -14,7 +14,7 @@ if (!isset($_SESSION['id_pasien'])) {
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="description" content="Orbitor,business,company,agency,modern,bootstrap4,tech,software">
     <meta name="author" content="themefisher.com">
-
+    <link rel="icon" type="image/png" href="images/logo.png">
     <title>Tana Luwu Medical Center</title>
 
     <!-- Favicon -->

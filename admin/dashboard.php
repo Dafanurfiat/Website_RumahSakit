@@ -20,7 +20,13 @@ INNER JOIN pasien p ON a.id_pasien = p.id_pasien
 INNER JOIN jadwal_dokter jd ON a.id_jadwal_dokter = jd.id_jadwal_dokter
 ";
 $antrian = query($queryAntrian);
-$dokter = query("SELECT * FROM dokter");
+
+$queryDokter = "
+SELECT d.id_dokter, d.nama_dokter, d.no_wa, d.image, d.deskripsi, p.nama_poli
+FROM dokter d
+INNER JOIN poli p ON d.id_poli = p.id_poli
+";
+$dokter= query($queryDokter);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -213,7 +219,7 @@ $dokter = query("SELECT * FROM dokter");
                                                 <thead>
                                                     <tr>
                                                         <th>ID dokter</th>
-                                                        <th>ID poli</th>
+                                                        <th>Poli</th>
                                                         <th>Nama dokter</th>
                                                         <th>Nomor</th>
                                                         <th>Gambar</th>
@@ -225,7 +231,7 @@ $dokter = query("SELECT * FROM dokter");
                                                     <?php foreach ( $dokter as $dokter_row ): ?>
                                                     <tr>
                                                         <td><?= $dokter_row["id_dokter"]; ?></td>
-                                                        <td><?= $dokter_row["id_poli"]; ?></td>
+                                                        <td><?= $dokter_row["nama_poli"]; ?></td>
                                                         <td><?= $dokter_row["nama_dokter"]; ?></td>
                                                         <td><?= $dokter_row["no_wa"]; ?></td>
                                                         <td><img src="../images/dokter/<?= $dokter_row["image"]; ?>"

@@ -1,17 +1,29 @@
-<?php 
+<?php
 require '../function/function.php';
 
 session_start();
 
 if (!isset($_SESSION['login'])) {
-  header("Location: ../index.php");
+    header("Location: ../index.php");
 }
 
 $username = $_SESSION['username'];
 $query = "SELECT * FROM admin WHERE username = '$username'";
 $result = mysqli_query($conn, $query);
 
-$dokter = query("SELECT * FROM dokter");
+$queryDokter = "
+SELECT d.id_dokter, d.nama_dokter, d.no_wa, d.image, d.deskripsi, p.nama_poli
+FROM dokter d
+INNER JOIN poli p ON d.id_poli = p.id_poli
+";
+$dokter = query($queryDokter);
+
+$queryPoli = "SELECT id_poli, nama_poli FROM poli";
+$resultPoli = mysqli_query($conn, $queryPoli);
+$poliList = [];
+while ($poli = mysqli_fetch_assoc($resultPoli)) {
+    $poliList[] = $poli;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -149,8 +161,8 @@ $dokter = query("SELECT * FROM dokter");
                     <div class="page-header">
                         <h3 class="page-title"> Dokter </h3>
                         <button class="btn btn-outline-primary btn-icon-text" id="myBtn">
-                                        Tambah Data
-                                    </button>
+                            Tambah Data
+                        </button>
                     </div>
                     <div class="row">
                         <div class="col-lg-12 grid-margin stretch-card">
@@ -162,7 +174,7 @@ $dokter = query("SELECT * FROM dokter");
                                             <thead>
                                                 <tr>
                                                     <th>ID dokter</th>
-                                                    <th>ID poli</th>
+                                                    <th>Poli</th>
                                                     <th>Nama dokter</th>
                                                     <th>Nomor</th>
                                                     <th>Gambar</th>
@@ -171,29 +183,29 @@ $dokter = query("SELECT * FROM dokter");
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <?php foreach ( $dokter as $dokter_row ): ?>
-                                                <tr>
-                                                    <td><?= $dokter_row["id_dokter"]; ?></td>
-                                                    <td><?= $dokter_row["id_poli"]; ?></td>
-                                                    <td><?= $dokter_row["nama_dokter"]; ?></td>
-                                                    <td><?= $dokter_row["no_wa"]; ?></td>
-                                                    <td><img src="../images/dokter/<?= $dokter_row["image"]; ?>" alt=""
-                                                            style="width: 150px; height: 150px;">
-                                                    </td>
-                                                    <td><?= $dokter_row["deskripsi"]; ?></td>
-                                                    <td>
-                                                        <button type="button"
-                                                            class="btn btn-outline-primary btn-icon-text">
-                                                            <a href="../function/edit_dokter.php?id_dokter=<?= $dokter_row['id_dokter'] ?>"
-                                                                class="edit">Edit</a>
-                                                        </button> ||
-                                                        <button type="button"
-                                                            class="btn btn-outline-danger btn-icon-text">
-                                                            <a href="../function/hapus_dokter.php?id_dokter=<?= $dokter_row['id_dokter'] ?>"
-                                                                class="hapus">Hapus</a>
-                                                        </button>
-                                                    </td>
-                                                </tr>
+                                                <?php foreach ($dokter as $dokter_row): ?>
+                                                    <tr>
+                                                        <td><?= $dokter_row["id_dokter"]; ?></td>
+                                                        <td><?= $dokter_row["nama_poli"]; ?></td>
+                                                        <td><?= $dokter_row["nama_dokter"]; ?></td>
+                                                        <td><?= $dokter_row["no_wa"]; ?></td>
+                                                        <td><img src="../images/dokter/<?= $dokter_row["image"]; ?>" alt=""
+                                                                style="width: 150px; height: 150px;">
+                                                        </td>
+                                                        <td><?= $dokter_row["deskripsi"]; ?></td>
+                                                        <td>
+                                                            <button type="button"
+                                                                class="btn btn-outline-primary btn-icon-text">
+                                                                <a href="../function/edit_dokter.php?id_dokter=<?= $dokter_row['id_dokter'] ?>"
+                                                                    class="edit">Edit</a>
+                                                            </button> ||
+                                                            <button type="button"
+                                                                class="btn btn-outline-danger btn-icon-text">
+                                                                <a href="../function/hapus_dokter.php?id_dokter=<?= $dokter_row['id_dokter'] ?>"
+                                                                    class="hapus">Hapus</a>
+                                                            </button>
+                                                        </td>
+                                                    </tr>
                                                 <?php endforeach; ?>
                                             </tbody>
                                         </table>
@@ -239,18 +251,23 @@ $dokter = query("SELECT * FROM dokter");
 </body>
 <!-- add modal -->
 <div id="myModal" class="modal">
-<!-- Modal content -->
+    <!-- Modal content -->
     <div class="modal-content">
-   
+
         <div class="modal-header-center">
             <span class="close">&times;</span>
             <h2>Menambahkan data dokter</h2>
         </div>
-        
+
         <div class="modal-body">
             <form class="modal-form-dokter" action="../function/tambah_dokter.php" method="POST" enctype="multipart/form-data">
                 <input type="number" placeholder="ID dokter" name="id_dokter" required>
-                <input type="number" placeholder="ID poli" name="id_poli" required>
+                <select id="id_poli" name="id_poli" required>
+                    <option value="" disabled selected>Pilih Poli</option>
+                    <?php foreach ($poliList as $poli): ?>
+                        <option value="<?= $poli['id_poli']; ?>"><?= $poli['nama_poli']; ?></option>
+                    <?php endforeach; ?>
+                </select>
                 <input type="text" placeholder="Nama dokter" name="nama_dokter" required>
                 <input type="number" placeholder="Nomor" name="no_wa" required>
                 <textarea placeholder="Deskripsi" name="deskripsi" required></textarea>
@@ -258,9 +275,10 @@ $dokter = query("SELECT * FROM dokter");
                 <input type="submit" value="simpan">
             </form>
         </div>
-    
-    </div>            
+
+    </div>
 </div>
 <!-- add modal -->
 <script src="../scripts/script.js"></script>
+
 </html>

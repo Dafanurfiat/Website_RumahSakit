@@ -3,9 +3,17 @@ include 'function.php';
 
 $id_dokter = $_GET['id_dokter'];
 
-// Fetch existing data
+// Fetch existing dokter data
 $result = mysqli_query($conn, "SELECT * FROM dokter WHERE id_dokter = '$id_dokter'");
 $dokter = mysqli_fetch_assoc($result);
+
+// Fetch poli data for dropdown
+$queryPoli = "SELECT id_poli, nama_poli FROM poli";
+$resultPoli = mysqli_query($conn, $queryPoli);
+$poliList = [];
+while ($poli = mysqli_fetch_assoc($resultPoli)) {
+    $poliList[] = $poli;
+}
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $new_id_dokter = $_POST['new_id_dokter'];
@@ -59,44 +67,56 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit dokter</title>
     <link rel="stylesheet" href="../styles/edit.css">
 </head>
+
 <body>
-<main>
-<section class="wrapper">
-    <div class="box">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-    </div>
-</section>
-    <div class="edit-form">
-        <h1>Edit dokter</h1>
-        <form method="POST" enctype="multipart/form-data">
-            <p class="error"><?php if (isset($err)) { echo $err; } ?></p>
-            ID dokter: <input type="number" name="new_id_dokter" value="<?php echo $dokter['id_dokter']; ?>" required><br>
-            ID poli: <input type="number" name="new_id_poli" value="<?php echo $dokter['id_poli']; ?>" required><br>
-            Nama dokter: <input type="text" name="nama_dokter" value="<?php echo $dokter['nama_dokter']; ?>" required><br>
-            deskripsi: <textarea name="deskripsi" required><?php echo $dokter['deskripsi']; ?></textarea><br>
-            image: <input type="file" name="image"><br>
-            <img src="../images/dokter/<?php echo $dokter['image']; ?>" alt="Current image" width="100"><br>
-            <button type="submit">Simpan</button>
-        </form>
-        <a href="../admin/manajemenDokter.php">Kembali</a>
-    </div>
-</main>
+    <main>
+        <section class="wrapper">
+            <div class="box">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </section>
+        <div class="edit-form">
+            <h1>Edit dokter</h1>
+            <form method="POST" enctype="multipart/form-data">
+                <p class="error"><?php if (isset($err)) {
+                                        echo $err;
+                                    } ?></p>
+                ID dokter: <input type="number" name="new_id_dokter" value="<?php echo $dokter['id_dokter']; ?>" required><br>
+                Poli: <select id="new_id_poli" name="new_id_poli" required>
+                    <option value="" disabled>Pilih Poli</option>
+                    <?php foreach ($poliList as $poli): ?>
+                        <option value="<?= $poli['id_poli']; ?>" <?= $dokter['id_poli'] == $poli['id_poli'] ? 'selected' : ''; ?>>
+                            <?= $poli['nama_poli']; ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select><br>
+                Nama dokter: <input type="text" name="nama_dokter" value="<?php echo $dokter['nama_dokter']; ?>" required><br>
+                deskripsi: <textarea name="deskripsi" required><?php echo $dokter['deskripsi']; ?></textarea><br>
+                image: <input type="file" name="image"><br>
+                <img src="../images/dokter/<?php echo $dokter['image']; ?>" alt="Current image" width="100"><br>
+                <button type="submit">Simpan</button>
+            </form>
+            <a href="../admin/manajemenDokter.php">Kembali</a>
+        </div>
+    </main>
 </body>
+
 </html>
-    

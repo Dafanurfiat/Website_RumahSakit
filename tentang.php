@@ -34,7 +34,6 @@ if (!isset($_SESSION['id_pasien'])) {
 </head>
 
 <body id="top">
-
     <header>
         <div class="header-top-bar">
             <div class="container">
@@ -63,12 +62,10 @@ if (!isset($_SESSION['id_pasien'])) {
                 <a class="navbar-brand" href="landingPage.php">
                     <img src="images/logo.png" alt="" class="img-fluid">
                 </a>
-
                 <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarmain"
                     aria-controls="navbarmain" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="icofont-navigation-menu"></span>
                 </button>
-
                 <div class="collapse navbar-collapse" id="navbarmain">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item active">
@@ -86,7 +83,6 @@ if (!isset($_SESSION['id_pasien'])) {
                                 <li><a class="dropdown-item" href="janji.php">Membuat Janji</a></li>
                             </ul>
                         </li>
-
                         <li class="nav-item"><a class="nav-link" href="blog-sidebar.php">Berita</a></li>
                         <li class="nav-item"><a class="nav-link" href="contact.php">Kontak</a></li>
                         <li class="nav-item"><a class="nav-link" href="function\logout.php">Logout</a></li>
@@ -95,8 +91,6 @@ if (!isset($_SESSION['id_pasien'])) {
             </div>
         </nav>
     </header>
-
-
 
     <section class="page-title bg-1">
         <div class="overlay"></div>

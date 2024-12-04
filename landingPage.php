@@ -124,9 +124,6 @@ $beritaResult = mysqli_query($conn, "SELECT * FROM berita");
         </nav>
     </header>
 
-
-
-
     <!-- Slider Start -->
     <section class="banner">
         <div class="container">
@@ -195,8 +192,6 @@ $beritaResult = mysqli_query($conn, "SELECT * FROM berita");
             </div>
         </div>
     </section>
-
-
     <section class="section about">
         <div class="container">
             <div class="row align-items-center">
@@ -217,7 +212,8 @@ $beritaResult = mysqli_query($conn, "SELECT * FROM berita");
                         <p class="mt-4 mb-5">Kami menyediakan layanan medis terbaik dan terpercaya. Komitmen kami adalah
                             memberikan pelayanan berkualitas yang mengutamakan kenyamanan dan kesehatan Anda.</p>
 
-                        <a href="poli.php" class="btn btn-main-2 btn-round-full btn-icon">Poli<i class="icofont-simple-right ml-3"></i></a>
+                        <a href="poli.php" class="btn btn-main-2 btn-round-full btn-icon">Poli<i
+                                class="icofont-simple-right ml-3"></i></a>
                     </div>
                 </div>
             </div>
@@ -267,7 +263,9 @@ $beritaResult = mysqli_query($conn, "SELECT * FROM berita");
                     <div class="section-title">
                         <h2>Perawatan Pasien yang Terbaik dan Terpercaya</h2>
                         <div class="divider mx-auto my-4"></div>
-                        <p>Kami berkomitmen untuk memberikan perawatan pasien yang terbaik, dengan layanan yang telah diakui secara nasional. Kami mendengarkan kebutuhan Anda dan memberikan solusi kesehatan yang terbaik.</p>
+                        <p>Kami berkomitmen untuk memberikan perawatan pasien yang terbaik, dengan layanan yang telah
+                            diakui secara nasional. Kami mendengarkan kebutuhan Anda dan memberikan solusi kesehatan
+                            yang terbaik.</p>
                     </div>
                 </div>
             </div>
@@ -355,8 +353,6 @@ $beritaResult = mysqli_query($conn, "SELECT * FROM berita");
                     <thead class="thead-dark">
                         <tr>
                             <th scope="col">ID Rekam Medis</th>
-                            <th scope="col">ID Pasien</th>
-                            <th scope="col">ID Antrian</th>
                             <th scope="col">Diagnosa</th>
                             <th scope="col">ID dokter</th>
                             <th scope="col">Tekanan Darah Tinggi</th>
@@ -367,20 +363,18 @@ $beritaResult = mysqli_query($conn, "SELECT * FROM berita");
                         </tr>
                     </thead>
                     <tbody>
-        <?php foreach ($rekamMedis as $medis_row): ?>
-            <tr>
-                <td><?= htmlspecialchars($medis_row["id_rekam_medis"]); ?></td>
-                <td><?= htmlspecialchars($medis_row["id_pasien"]); ?></td>
-                <td><?= htmlspecialchars($medis_row["id_antrian"]); ?></td>
-                <td><?= htmlspecialchars($medis_row["diagnosa"]); ?></td>
-                <td><?= htmlspecialchars($medis_row["id_dokter"]); ?></td>
-                <td><?= htmlspecialchars($medis_row["tekanan_darah_tinggi"]); ?></td>
-                <td><?= htmlspecialchars($medis_row["berat_badan"]); ?></td>
-                <td><?= htmlspecialchars($medis_row["tinggi_badan"]); ?></td>
-                <td><?= htmlspecialchars($medis_row["suhu_badan"]); ?></td>
-                <td><?= htmlspecialchars($medis_row["obat"]); ?></td>
-            </tr>
-        <?php endforeach; ?>
+                        <?php foreach ($rekamMedis as $medis_row): ?>
+                        <tr>
+                            <td><?= htmlspecialchars($medis_row["id_rekam_medis"]); ?></td>
+                            <td><?= htmlspecialchars($medis_row["diagnosa"]); ?></td>
+                            <td><?= htmlspecialchars($medis_row["id_dokter"]); ?></td>
+                            <td><?= htmlspecialchars($medis_row["tekanan_darah_tinggi"]); ?></td>
+                            <td><?= htmlspecialchars($medis_row["berat_badan"]); ?></td>
+                            <td><?= htmlspecialchars($medis_row["tinggi_badan"]); ?></td>
+                            <td><?= htmlspecialchars($medis_row["suhu_badan"]); ?></td>
+                            <td><?= htmlspecialchars($medis_row["obat"]); ?></td>
+                        </tr>
+                        <?php endforeach; ?>
                 </table>
             </div>
         </div>
@@ -422,15 +416,15 @@ $beritaResult = mysqli_query($conn, "SELECT * FROM berita");
                     // Menampilkan setiap berita dalam sebuah blok testimonial
                     while ($berita = mysqli_fetch_assoc($beritaResult)) :
                     ?>
-                        <div class="testimonial-block">
-                            <div class="client-info">
-                                <h4><?php echo htmlspecialchars($berita['judul_berita']); ?></h4>
-                                <span><?php echo htmlspecialchars($berita['waktu_berita']); ?></span>
-                            </div>
-                            <p>
-                                <?php echo htmlspecialchars(substr($berita['isi_berita'], 0, 150)) . '...'; ?>
-                            </p>
+                    <div class="testimonial-block">
+                        <div class="client-info">
+                            <h4><?php echo htmlspecialchars($berita['judul_berita']); ?></h4>
+                            <span><?php echo htmlspecialchars($berita['waktu_berita']); ?></span>
                         </div>
+                        <p>
+                            <?php echo htmlspecialchars(substr($berita['isi_berita'], 0, 150)) . '...'; ?>
+                        </p>
+                    </div>
                     <?php endwhile; ?>
                 </div>
             </div>
@@ -512,8 +506,6 @@ $beritaResult = mysqli_query($conn, "SELECT * FROM berita");
             </div>
         </div>
     </footer>
-
-
 
     <!-- 
     Essential Scripts

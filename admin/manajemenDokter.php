@@ -47,7 +47,7 @@ $dokter = query("SELECT * FROM dokter");
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
             <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
                 <a class="sidebar-brand brand-logo" href="dashboard.php" style="color: #c53f3f">
-                    <h1>Tana Luwu | Admin</h1>
+                    <h1>Tana Luwu</h1>
                 </a>
                 <a class="sidebar-brand brand-logo-mini" href="dashboard.php"><img src="../images/logo.png"
                         alt="logo" /></a>

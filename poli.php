@@ -11,17 +11,14 @@ $poliResult = mysqli_query($conn, "SELECT * FROM poli");
 ?>
 <!DOCTYPE html>
 <html lang="zxx">
-
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="description" content="Orbitor,business,company,agency,modern,bootstrap4,tech,software">
     <meta name="author" content="themefisher.com">
     <link rel="icon" type="image/png" href="images/logo.png">
     <title>Tana Luwu Medical Center</title>
-
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico" />
-
     <!-- bootstrap.min css -->
     <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css">
     <!-- Icon Font Css -->
@@ -29,14 +26,10 @@ $poliResult = mysqli_query($conn, "SELECT * FROM poli");
     <!-- Slick Slider  CSS -->
     <link rel="stylesheet" href="plugins/slick-carousel/slick/slick.css">
     <link rel="stylesheet" href="plugins/slick-carousel/slick/slick-theme.css">
-
     <!-- Main Stylesheet -->
     <link rel="stylesheet" href="css/style.css">
-
 </head>
-
 <body id="top">
-
     <header>
         <div class="header-top-bar">
             <div class="container">
@@ -77,9 +70,7 @@ $poliResult = mysqli_query($conn, "SELECT * FROM poli");
                             <a class="nav-link" href="landingPage.php">Beranda</a>
                         </li>
                         <li class="nav-item"><a class="nav-link" href="tentang.php">Tentang Kami</a></li>
-
                         <li class="nav-item"><a class="nav-link" href="poli.php">Poli</a></li>
-
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="dokter.php" id="dropdown03" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">Dokter <i class="icofont-thin-down"></i></a>
@@ -88,7 +79,6 @@ $poliResult = mysqli_query($conn, "SELECT * FROM poli");
                                 <li><a class="dropdown-item" href="janji.php">Membuat Janji</a></li>
                             </ul>
                         </li>
-
                         <li class="nav-item"><a class="nav-link" href="blog-sidebar.php">Berita</a></li>
                         <li class="nav-item"><a class="nav-link" href="contact.php">Kontak</a></li>
                         <li class="nav-item"><a class="nav-link" href="function\logout.php">Logout</a></li>
@@ -98,8 +88,6 @@ $poliResult = mysqli_query($conn, "SELECT * FROM poli");
         </nav>
     </header>
 
-
-
     <section class="page-title bg-1">
         <div class="overlay"></div>
         <div class="container">
@@ -108,7 +96,6 @@ $poliResult = mysqli_query($conn, "SELECT * FROM poli");
                     <div class="block text-center">
                         <span class="text-white">Tana Luwu Medical Center</span>
                         <h1 class="text-capitalize mb-5 text-lg">Poli</h1>
-
                         <!-- <ul class="list-inline breadcumb-nav">
             <li class="list-inline-item"><a href="landingPage.php" class="text-white">Home</a></li>
             <li class="list-inline-item"><span class="text-white">/</span></li>
@@ -119,7 +106,6 @@ $poliResult = mysqli_query($conn, "SELECT * FROM poli");
             </div>
         </div>
     </section>
-
 
     <section class="section service-2">
         <div class="container">
@@ -155,7 +141,6 @@ $poliResult = mysqli_query($conn, "SELECT * FROM poli");
         </div>
     </section>
 
-
     <!-- footer Start -->
     <footer class="footer section gray-bg">
         <div class="container">
@@ -176,7 +161,6 @@ $poliResult = mysqli_query($conn, "SELECT * FROM poli");
                     <div class="widget mb-5 mb-lg-0">
                         <h4 class="text-capitalize mb-3">Poli</h4>
                         <div class="divider mb-4"></div>
-
                         <ul class="list-unstyled footer-menu lh-35">
                             <li><a href="poli.php">Penyakit Dalam </a></li>
                             <li><a href="poli.php">Kandungan dan anak</a></li>
@@ -199,7 +183,6 @@ $poliResult = mysqli_query($conn, "SELECT * FROM poli");
                             </div>
                             <h4 class="mt-2"><a href="tel:+6208958029292929">Tanaluwumedical@gmail.com</a></h4>
                         </div>
-
                         <div class="footer-contact-block">
                             <div class="icon d-flex align-items-center">
                                 <i class="icofont-support mr-3"></i>
@@ -210,7 +193,6 @@ $poliResult = mysqli_query($conn, "SELECT * FROM poli");
                     </div>
                 </div>
             </div>
-
             <div class="footer-btm py-4 mt-5">
                 <div class="row align-items-center justify-content-between">
                     <div class="col-lg-6">
@@ -218,9 +200,7 @@ $poliResult = mysqli_query($conn, "SELECT * FROM poli");
                             &copy; Copyright Reserved to <span class="text-color">Tana Luwu Medical Center</span></a>
                         </div>
                     </div>
-
                 </div>
-
                 <div class="row">
                     <div class="col-lg-4">
                         <a class="backtop js-scroll-trigger" href="#top">
@@ -232,11 +212,9 @@ $poliResult = mysqli_query($conn, "SELECT * FROM poli");
         </div>
     </footer>
 
-
     <!-- 
     Essential Scripts
     =====================================-->
-
 
     <!-- Main jQuery -->
     <script src="plugins/jquery/jquery.js"></script>
@@ -248,17 +226,13 @@ $poliResult = mysqli_query($conn, "SELECT * FROM poli");
     <script src="plugins/slick-carousel/slick/slick.min.js"></script>
     <!-- Counterup -->
     <script src="plugins/counterup/jquery.waypoints.min.js"></script>
-
     <script src="plugins/shuffle/shuffle.min.js"></script>
     <script src="plugins/counterup/jquery.counterup.min.js"></script>
     <!-- Google Map -->
     <script src="plugins/google-map/map.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkeLMlsiwzp6b3Gnaxd86lvakimwGA6UA&callback=initMap">
     </script>
-
     <script src="js/script.js"></script>
     <script src="js/contact.js"></script>
-
 </body>
-
 </html>

@@ -43,10 +43,8 @@ if ($idPoli) {
     <meta name="author" content="themefisher.com" />
     <link rel="icon" type="image/png" href="images/logo.png">
     <title>Tana Luwu Medical Center</title>
-
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico" />
-
     <!-- bootstrap.min css -->
     <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css" />
     <!-- Icon Font Css -->
@@ -54,7 +52,6 @@ if ($idPoli) {
     <!-- Slick Slider  CSS -->
     <link rel="stylesheet" href="plugins/slick-carousel/slick/slick.css" />
     <link rel="stylesheet" href="plugins/slick-carousel/slick/slick-theme.css" />
-
     <!-- Main Stylesheet -->
     <link rel="stylesheet" href="css/style.css" />
 </head>
@@ -93,16 +90,13 @@ if ($idPoli) {
                     aria-controls="navbarmain" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="icofont-navigation-menu"></span>
                 </button>
-
                 <div class="collapse navbar-collapse" id="navbarmain">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item active">
                             <a class="nav-link" href="landingPage.php">Beranda</a>
                         </li>
                         <li class="nav-item"><a class="nav-link" href="tentang.php">Tentang Kami</a></li>
-
                         <li class="nav-item"><a class="nav-link" href="poli.php">Poli</a></li>
-
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="dokter.php" id="dropdown03" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">Dokter <i class="icofont-thin-down"></i></a>
@@ -111,7 +105,6 @@ if ($idPoli) {
                                 <li><a class="dropdown-item" href="janji.php">Membuat Janji</a></li>
                             </ul>
                         </li>
-
                         <li class="nav-item"><a class="nav-link" href="blog-sidebar.php">Berita</a></li>
                         <li class="nav-item"><a class="nav-link" href="contact.php">Kontak</a></li>
                         <li class="nav-item"><a class="nav-link" href="function\logout.php">Logout</a></li>
@@ -129,7 +122,6 @@ if ($idPoli) {
                     <div class="block text-center">
                         <span class="text-white">Tana Luwu Medical Center</span>
                         <h1 class="text-capitalize mb-5 text-lg">Detail Poli</h1>
-
                         <!-- <ul class="list-inline breadcumb-nav">
             <li class="list-inline-item"><a href="landingPage.php" class="text-white">Home</a></li>
             <li class="list-inline-item"><span class="text-white">/</span></li>
@@ -140,7 +132,6 @@ if ($idPoli) {
             </div>
         </div>
     </section>
-
     <section class="section poliSingle.php">
         <div class="container">
             <div class="row">
@@ -150,7 +141,6 @@ if ($idPoli) {
                     </div>
                 </div>
             </div>
-
             <div class="row">
                 <div class="col-lg-8">
                     <div class="department-content mt-5">
@@ -185,7 +175,6 @@ if ($idPoli) {
                     <div class="widget mb-5 mb-lg-0">
                         <h4 class="text-capitalize mb-3">Poli</h4>
                         <div class="divider mb-4"></div>
-
                         <ul class="list-unstyled footer-menu lh-35">
                             <li><a href="poli.php">Penyakit Dalam </a></li>
                             <li><a href="poli.php">Kandungan dan anak</a></li>
@@ -200,7 +189,6 @@ if ($idPoli) {
                     <div class="widget widget-contact mb-5 mb-lg-0">
                         <h4 class="text-capitalize mb-3">Hubungi Kami</h4>
                         <div class="divider mb-4"></div>
-
                         <div class="footer-contact-block mb-4">
                             <div class="icon d-flex align-items-center">
                                 <i class="icofont-email mr-3"></i>
@@ -227,7 +215,6 @@ if ($idPoli) {
                             &copy; Copyright Reserved to <span class="text-color">Tana Luwu Medical Center</span></a>
                         </div>
                     </div>
-
                 </div>
 
                 <div class="row">
@@ -262,9 +249,7 @@ if ($idPoli) {
     <script src="plugins/google-map/map.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkeLMlsiwzp6b3Gnaxd86lvakimwGA6UA&callback=initMap">
     </script>
-
     <script src="js/script.js"></script>
     <script src="js/contact.js"></script>
 </body>
-
 </html>
